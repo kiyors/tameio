@@ -5,7 +5,6 @@ use db::entities::{
 };
 use rust_decimal::Decimal;
 use sea_orm::{ActiveModelTrait, ColumnTrait, EntityTrait, QueryFilter, Set, TransactionTrait};
-use std::str::FromStr;
 
 /// Gets the demo status for the user.
 ///
@@ -50,7 +49,7 @@ pub async fn seed_demo_data(
         id: Set(uuid::Uuid::now_v7().to_string()),
         user_id: Set(user_id.to_string()),
         name: Set("HDFC Bank Account".to_string()),
-        balance: Set(Decimal::from_str("45000.00").unwrap()),
+        balance: Set(Decimal::from(45000)),
         r#type: Set(db::entities::enums::WalletType::Bank),
         ..Default::default()
     }
@@ -61,7 +60,7 @@ pub async fn seed_demo_data(
         id: Set(uuid::Uuid::now_v7().to_string()),
         user_id: Set(user_id.to_string()),
         name: Set("ICICI Credit Card".to_string()),
-        balance: Set(Decimal::from_str("-12500.00").unwrap()),
+        balance: Set(Decimal::from(-12500)),
         r#type: Set(db::entities::enums::WalletType::CreditCard),
         ..Default::default()
     }
@@ -72,7 +71,7 @@ pub async fn seed_demo_data(
         id: Set(uuid::Uuid::now_v7().to_string()),
         user_id: Set(user_id.to_string()),
         name: Set("Cash".to_string()),
-        balance: Set(Decimal::from_str("3200.00").unwrap()),
+        balance: Set(Decimal::from(3200)),
         r#type: Set(db::entities::enums::WalletType::Cash),
         ..Default::default()
     }
@@ -113,9 +112,9 @@ pub async fn seed_demo_data(
     // Create 3 Budgets
     let mut budget_models = Vec::new();
     let budget_data = [
-        (&inserted_categories[0], "8000.00"),
-        (&inserted_categories[1], "3000.00"),
-        (&inserted_categories[2], "5000.00"),
+        (&inserted_categories[0], 8000),
+        (&inserted_categories[1], 3000),
+        (&inserted_categories[2], 5000),
     ];
     let now_naive = chrono::Utc::now().naive_utc();
     let now_tz: chrono::DateTime<chrono::FixedOffset> = chrono::Utc::now().into();
@@ -125,7 +124,7 @@ pub async fn seed_demo_data(
             id: Set(uuid::Uuid::now_v7().to_string()),
             user_id: Set(user_id.to_string()),
             category_id: Set(Some(cat_id.clone())),
-            amount: Set(Decimal::from_str(amount).unwrap()),
+            amount: Set(Decimal::from(amount)),
             period: Set(BudgetPeriod::Monthly),
             created_at: Set(now_naive),
             updated_at: Set(now_naive),
@@ -165,9 +164,9 @@ pub async fn seed_demo_data(
     for i in 0..20 {
         let is_income = i % 5 == 0;
         let amount = if is_income {
-            Decimal::from_str("15000.00").unwrap()
+            Decimal::from(15000)
         } else {
-            Decimal::from_str(&format!("{}.00", (i + 1) * 100)).unwrap()
+            Decimal::from((i + 1) * 100)
         };
 
         let cat_idx = i % inserted_categories.len();

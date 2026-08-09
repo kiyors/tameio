@@ -68,7 +68,7 @@ where
         let mut mapped_headers = HashMap::with_capacity(parts.headers.len());
         for (name, value) in parts.headers.iter() {
             if let Ok(val_str) = value.to_str() {
-                mapped_headers.insert(name.as_str().to_string(), val_str.to_string());
+                mapped_headers.insert(name.as_str().to_owned(), val_str.to_owned());
             }
         }
 

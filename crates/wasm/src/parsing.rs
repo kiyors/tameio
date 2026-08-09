@@ -13,7 +13,7 @@ pub fn parse_csv_to_json(data: &[u8]) -> Result<JsValue, JsError> {
         let mut row = std::collections::HashMap::new();
         for (i, header) in headers.iter().enumerate() {
             if let Some(val) = record.get(i) {
-                row.insert(header.to_string(), val.to_string());
+                row.insert(header, val.to_owned());
             }
         }
         rows.push(row);

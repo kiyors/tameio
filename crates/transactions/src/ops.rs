@@ -423,7 +423,7 @@ pub async fn split_transaction(
                 return Err(AppError::unauthorized("Unauthorized"));
             }
 
-            let mut results = Vec::new();
+            let mut results = Vec::with_capacity(splits.len());
             for split in splits {
                 let request = entities::p2p_requests::ActiveModel {
                     id: Set(uuid::Uuid::now_v7().to_string()),

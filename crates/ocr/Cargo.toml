@@ -33,4 +33,6 @@ uuid.workspace = true
 
 [lib]
 doctest = false
-test = false
+
+[dev-dependencies]
+rstest = "0.26"

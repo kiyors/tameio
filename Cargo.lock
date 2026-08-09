@@ -4109,6 +4109,7 @@ dependencies = [
  "pdf-extract",
  "rand 0.9.4",
  "reqwest 0.13.3",
+ "rstest",
  "rust_decimal",
  "schemars",
  "sea-orm",

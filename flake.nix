@@ -146,6 +146,7 @@
                 sops
                 age
                 prek
+                secretspec
               ]
               ++ lib.optionals stdenv.isDarwin [
                 libiconv
@@ -179,14 +180,14 @@
               echo "  node:   $(node --version)"
               echo "  pnpm:   $(pnpm --version)"
 
-              # Auto-decrypt secrets.env on clone or if secrets.env is newer than .env (like after git pull)
-              if [ -f secrets.env ] && { [ ! -f .env ] || [ secrets.env -nt .env ]; }; then
-                echo "🔓 Decrypting updated secrets.env to .env..."
-                if content=$(sops -d secrets.env 2>/dev/null); then
-                  echo "$content" > .env
-                  ${pkgs.coreutils}/bin/sha256sum .env | cut -d' ' -f1 > .env.sha256
-                else
-                  echo "⚠️  Skipping decryption: Missing age key."
+              # Set SecretSpec Defaults
+              export SECRETSPEC_PROFILE="development"
+
+              # Validate secrets against secretspec
+              if [ -f secrets.yml ] && [ -f secretspec.toml ]; then
+                echo "🔍 Validating secrets with secretspec..."
+                if sops -d secrets.yml > /dev/null 2>&1; then
+                  secretspec check || echo "⚠️ Secret validation failed."
                 fi
               fi
             '';

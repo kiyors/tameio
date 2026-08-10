@@ -10,12 +10,6 @@ repos:
 
   - repo: local
     hooks:
-      - id: encrypt-env
-        name: Encrypt .env to secrets.env
-        entry: bash -c 'if [ -f .env ]; then hash=$(sha256sum .env 2>/dev/null || shasum -a 256 .env | cut -d" " -f1); if [ ! -f .env.sha256 ] || [ "$(cat .env.sha256 2>/dev/null)" != "$hash" ]; then cp .env secrets.env && sops -e -i secrets.env && git add secrets.env && echo "$hash" > .env.sha256; fi; fi'
-        language: system
-        pass_filenames: false
-
       - id: forbid-env-files
         name: Prevent committing environment files
         entry: bash -c 'echo "Refusing to commit environment file(s):" >&2; printf "  - %s\n" "$@" >&2; echo "Commit a .env.example, .env.sample, or .env.template file instead." >&2; exit 1' --

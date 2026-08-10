@@ -2,8 +2,8 @@ keys:
   - &gaurav age1epwk66jtnh4vpg0eysfzpc8evyq4rx4ycyec37n9kgn88d8u7e4sfzvdfv
 
 creation_rules:
-  # Encrypt the secrets.env file so it can be committed to GitHub
-  - path_regex: secrets\.env$
+  # Encrypt both secrets.yml and secrets-prod.yml files
+  - path_regex: secrets(-prod)?\.yml$
     key_groups:
       - age:
           - *gaurav

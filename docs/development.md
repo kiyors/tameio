@@ -27,24 +27,25 @@ cargo build
 
 ### Step 2: Configuration (Secrets Management)
 
-Tameio uses [`sops`](https://github.com/getsops/sops) combined with `age` for environment variable encryption. Encrypted secrets are safely committed to the repository in `secrets.env`.
+Tameio uses [`secretspec`](https://secretspec.dev/) with `sops` as the provider and `age` for environment variable encryption. Encrypted secrets are safely committed to the repository in `secrets.yml`.
 
-1. **Prerequisites:** Ensure `sops` and `age` are installed (or simply run `nix develop` if you are using Nix, which provides them automatically).
+1. **Prerequisites:** Ensure `sops`, `age`, and `secretspec` are installed (or simply run `nix develop` if you are using Nix, which provides them automatically).
 2. **Setup your Age Key:** Obtain the project's `age` private key and configure it (e.g., place it in `~/Library/Application Support/sops/age/keys.txt` on macOS).
 3. **Running the Application:**
-   Instead of using a plaintext `.env` file, you can inject the decrypted variables dynamically at runtime:
+   Instead of using a plaintext `.env` file, you can inject the decrypted variables dynamically at runtime and ensure all required secrets are present:
    ```bash
-   sops exec-env secrets.env 'pnpm dev'
+   secretspec run --provider sops://secrets.yml -- pnpm dev
    ```
-   **Alternative (Local `.env`):** If you prefer using a traditional `.env` file (which is ignored by Git), you can decrypt `secrets.env` into a local `.env` file:
+   **Alternative (Local `.env`):** If you prefer using a traditional `.env` file (which is ignored by Git), you can decrypt `secrets.yml` into a local `.env` file:
    ```bash
-   sops -d secrets.env > .env
+   sops -d secrets.yml > .env
    ```
 4. **Modifying Secrets:**
    To add or update variables, edit the encrypted file in place. It will be decrypted for your editor and re-encrypted upon saving:
    ```bash
-   sops secrets.env
+   sops secrets.yml
    ```
+   *Note: Ensure any new required secrets are also declared in `secretspec.toml`.*
 
 ### Step 3: Database Migrations
 

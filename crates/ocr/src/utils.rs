@@ -26,9 +26,9 @@ pub fn split_pdf(data: &[u8]) -> Result<Vec<Vec<u8>>, anyhow::Error> {
         single_page_doc.delete_pages(&pages_to_delete);
 
         let mut buffer = Vec::new();
-        single_page_doc
-            .save_to(&mut buffer)
-            .map_err(|e| anyhow::anyhow!("Failed to save split PDF for page {}: {}", page_num, e))?;
+        single_page_doc.save_to(&mut buffer).map_err(|e| {
+            anyhow::anyhow!("Failed to save split PDF for page {}: {}", page_num, e)
+        })?;
 
         result.push(buffer);
     }
@@ -168,7 +168,8 @@ mod tests {
 
         for i in 0..pages {
             let content_str = format!("BT /F1 12 Tf 100 100 Td (Page {}) Tj ET", i + 1);
-            let content = doc.add_object(Stream::new(dictionary!{}, content_str.as_bytes().to_vec()));
+            let content =
+                doc.add_object(Stream::new(dictionary! {}, content_str.as_bytes().to_vec()));
             let page_id = doc.add_object(dictionary! {
                 "Type" => "Page",
                 "Parent" => pages_id,
@@ -207,8 +208,13 @@ mod tests {
         assert_eq!(split_result.len(), 3, "Should have 3 pages");
 
         for (i, page_data) in split_result.iter().enumerate() {
-            let parsed_doc = Document::load_mem(page_data).unwrap_or_else(|_| panic!("Failed to parse split page {}", i + 1));
-            assert_eq!(parsed_doc.get_pages().len(), 1, "Split page should contain exactly 1 page");
+            let parsed_doc = Document::load_mem(page_data)
+                .unwrap_or_else(|_| panic!("Failed to parse split page {}", i + 1));
+            assert_eq!(
+                parsed_doc.get_pages().len(),
+                1,
+                "Split page should contain exactly 1 page"
+            );
         }
     }
 

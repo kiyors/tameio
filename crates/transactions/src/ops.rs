@@ -423,7 +423,10 @@ pub async fn split_transaction(
                 return Err(AppError::unauthorized("Unauthorized"));
             }
 
-            let purpose = format!("Split for {}", txn.purpose_tag.as_deref().unwrap_or("Expense"));
+            let purpose = format!(
+                "Split for {}",
+                txn.purpose_tag.as_deref().unwrap_or("Expense")
+            );
             let requests: Vec<entities::p2p_requests::ActiveModel> = splits
                 .into_iter()
                 .map(|split| entities::p2p_requests::ActiveModel {
@@ -448,9 +451,7 @@ pub async fn split_transaction(
                         .await?;
                 }
 
-                let ids: Vec<String> = requests.iter()
-                    .map(|r| r.id.as_ref().to_owned())
-                    .collect();
+                let ids: Vec<String> = requests.iter().map(|r| r.id.as_ref().to_owned()).collect();
 
                 // Fetch the inserted requests by ID. To avoid hitting the DB limit of parameters per query
                 // (e.g. 65535 in PG, though SQLite is smaller) we chunk the lookup as well.
@@ -461,7 +462,6 @@ pub async fn split_transaction(
                         .await?;
                     results.extend(chunk_results);
                 }
-
             }
 
             Ok(results)

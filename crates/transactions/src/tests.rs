@@ -227,15 +227,17 @@ async fn test_split_transaction_performance() {
     let mut splits = Vec::new();
     for i in 0..1000 {
         splits.push(SplitDetail {
-            receiver_email: format!("user{}@example.com", i),
+            receiver_email: format!("user{i}@example.com"),
             amount: Decimal::from(1),
         });
     }
 
     let start = std::time::Instant::now();
-    let results = ops::split_transaction(&db, &user.id, "txn_1", splits).await.unwrap();
+    let results = ops::split_transaction(&db, &user.id, "txn_1", splits)
+        .await
+        .unwrap();
     let duration = start.elapsed();
 
     assert_eq!(results.len(), 1000);
-    println!("split_transaction 1000 splits took: {:?}", duration);
+    println!("split_transaction 1000 splits took: {duration:?}");
 }

@@ -12,10 +12,28 @@ pub fn split_pdf(data: &[u8]) -> Result<Vec<Vec<u8>>, anyhow::Error> {
         return Ok(vec![data.to_vec()]);
     }
 
-    // TODO: Implement actual splitting logic for lopdf 0.38
-    // For now, return as a single batch to avoid compilation errors
-    // while maintaining the architectural hook.
-    Ok(vec![data.to_vec()])
+    let mut result = Vec::with_capacity(page_numbers.len());
+
+    for &page_num in &page_numbers {
+        let mut single_page_doc = doc.clone();
+
+        let pages_to_delete: Vec<u32> = page_numbers
+            .iter()
+            .filter(|&&p| p != page_num)
+            .cloned()
+            .collect();
+
+        single_page_doc.delete_pages(&pages_to_delete);
+
+        let mut buffer = Vec::new();
+        single_page_doc.save_to(&mut buffer).map_err(|e| {
+            anyhow::anyhow!("Failed to save split PDF for page {}: {}", page_num, e)
+        })?;
+
+        result.push(buffer);
+    }
+
+    Ok(result)
 }
 
 pub fn get_media_type(filename: &str) -> &'static str {
@@ -123,4 +141,87 @@ pub fn parse_bank_date(date_str: &str) -> Option<chrono::DateTime<chrono::Utc>> 
     }
     tracing::error!("❌ Failed to parse bank transaction date: '{}'", date_str);
     None
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use lopdf::{Document, Object, Stream, dictionary};
+
+    fn create_dummy_pdf(pages: usize) -> Vec<u8> {
+        let mut doc = Document::with_version("1.5");
+        let pages_id = doc.new_object_id();
+
+        let font_id = doc.add_object(dictionary! {
+            "Type" => "Font",
+            "Subtype" => "Type1",
+            "BaseFont" => "Courier",
+        });
+
+        let resources_id = doc.add_object(dictionary! {
+            "Font" => dictionary! {
+                "F1" => font_id,
+            },
+        });
+
+        let mut kids = Vec::new();
+
+        for i in 0..pages {
+            let content_str = format!("BT /F1 12 Tf 100 100 Td (Page {}) Tj ET", i + 1);
+            let content =
+                doc.add_object(Stream::new(dictionary! {}, content_str.as_bytes().to_vec()));
+            let page_id = doc.add_object(dictionary! {
+                "Type" => "Page",
+                "Parent" => pages_id,
+                "Contents" => content,
+                "Resources" => resources_id,
+                "MediaBox" => vec![0.into(), 0.into(), 595.into(), 842.into()],
+            });
+            kids.push(page_id.into());
+        }
+
+        let pages_dict = dictionary! {
+            "Type" => "Pages",
+            "Kids" => kids,
+            "Count" => pages as i32,
+        };
+
+        doc.objects.insert(pages_id, Object::Dictionary(pages_dict));
+
+        let catalog_id = doc.add_object(dictionary! {
+            "Type" => "Catalog",
+            "Pages" => pages_id,
+        });
+
+        doc.trailer.set("Root", catalog_id);
+
+        let mut out = Vec::new();
+        doc.save_to(&mut out).unwrap();
+        out
+    }
+
+    #[test]
+    fn test_split_pdf() {
+        let pdf_data = create_dummy_pdf(3);
+
+        let split_result = split_pdf(&pdf_data).expect("Failed to split PDF");
+        assert_eq!(split_result.len(), 3, "Should have 3 pages");
+
+        for (i, page_data) in split_result.iter().enumerate() {
+            let parsed_doc = Document::load_mem(page_data)
+                .unwrap_or_else(|_| panic!("Failed to parse split page {}", i + 1));
+            assert_eq!(
+                parsed_doc.get_pages().len(),
+                1,
+                "Split page should contain exactly 1 page"
+            );
+        }
+    }
+
+    #[test]
+    fn test_split_pdf_single_page() {
+        let pdf_data = create_dummy_pdf(1);
+        let split_result = split_pdf(&pdf_data).expect("Failed to split PDF");
+        assert_eq!(split_result.len(), 1, "Should have 1 page");
+    }
 }

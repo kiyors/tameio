@@ -1,25 +1,25 @@
-# Tameio Database Schema & Architecture Documentation
+# Keiri Database Schema & Architecture Documentation
 
 This document provides a highly detailed breakdown of the internal SeaORM database schema defined in `crates/db/src/entities` and the surrounding architecture that governs it.
 
-In the current architecture, **`crates/db`** serves strictly as a **Data Layer**, containing only SeaORM entities, migrations, and shared types. All high-level "Bank Logic" and business rules have been decoupled into the **`tameio_core`** hub.
+In the current architecture, **`crates/db`** serves strictly as a **Data Layer**, containing only SeaORM entities, migrations, and shared types. All high-level "Bank Logic" and business rules have been decoupled into the **`keiri_core`** hub.
 
 ---
 
-## 1. Architectural Context: The `tameio_core` Hub
+## 1. Architectural Context: The `keiri_core` Hub
 
-Unlike standard implementations where business logic might bleed into the database or API layers, Tameio utilizes a **Centralized Hub Architecture**:
+Unlike standard implementations where business logic might bleed into the database or API layers, Keiri utilizes a **Centralized Hub Architecture**:
 
 - **`crates/db` (The State)**: Pure data definitions. No business logic.
-- **`crates/tameio_core` (The Brain)**: The central hub for all business logic ("Bank Code"). It orchestrates all other crates (`db`, `auth`, `upload`, `ocr`) and exposes granular service modules.
+- **`crates/keiri_core` (The Brain)**: The central hub for all business logic ("Bank Code"). It orchestrates all other crates (`db`, `auth`, `upload`, `ocr`) and exposes granular service modules.
 
-> **Naming note:** `tameio_core::services::<x>` paths in this doc describe the **target** layout. The working path today is `tameio_core::<x>` (the facade re-exporting the domain crates). See `docs/core.md` for the convention.
+> **Naming note:** `keiri_core::services::<x>` paths in this doc describe the **target** layout. The working path today is `keiri_core::<x>` (the facade re-exporting the domain crates). See `docs/core.md` for the convention.
 
-- **`apps/api` (The Interface)**: A thin routing layer that delegates all complex operations to `tameio_core`.
+- **`apps/api` (The Interface)**: A thin routing layer that delegates all complex operations to `keiri_core`.
 
 ### Unified Orchestration (`Core` struct)
 
-The system is initialized via `tameio_core::Core::init()`, which establishes the database connection and prepares all service clients (S3, OCR, Auth).
+The system is initialized via `keiri_core::Core::init()`, which establishes the database connection and prepares all service clients (S3, OCR, Auth).
 
 ---
 
@@ -108,7 +108,7 @@ Shared enums are stored as `String(20)` in the database and serialized as `SCREA
 
 - **Purpose**: Identity representation managed by `better-auth` via `crates/auth`.
 - **UI Context**: Profile, Side Nav, Settings.
-- **Service Hub**: Managed by `tameio_core::services::users`.
+- **Service Hub**: Managed by `keiri_core::services::users`.
 - **State Flagging**: Stores arbitrary JSON configuration in the `metadata` column (e.g., `{"demo_active": true}` for the Onboarding system).
 
 ### `accounts`, `sessions`, `verifications`
@@ -119,11 +119,11 @@ Shared enums are stored as `String(20)` in the database and serialized as `SCREA
 
 ## 5. Transactions & Ledger (The "Bank Logic")
 
-The **`tameio_core::services::transactions`** module contains the critical rules for financial integrity.
+The **`keiri_core::services::transactions`** module contains the critical rules for financial integrity.
 
 ### `transactions`
 
-- **Automatic Balance Management**: Every `create`, `update`, or `delete` of a transaction triggers the `adjust_transaction_wallets` logic in `tameio_core`, ensuring wallet balances stay synced with ledger entries.
+- **Automatic Balance Management**: Every `create`, `update`, or `delete` of a transaction triggers the `adjust_transaction_wallets` logic in `keiri_core`, ensuring wallet balances stay synced with ledger entries.
 - **Split Logic**: The `split_transaction` service handles the fractional P2P distribution of payments.
 
 ### `txn_parties`, `transaction_metadata`, `transaction_sources`, `transaction_edits`
@@ -138,7 +138,7 @@ The **`tameio_core::services::transactions`** module contains the critical rules
 ### `wallets`
 
 - **Purpose**: Tracks actual available funds across different account types.
-- **Atomic Updates**: All balance changes are handled via `tameio_core::services::wallets::utils::adjust_balance` within database transactions to prevent race conditions.
+- **Atomic Updates**: All balance changes are handled via `keiri_core::services::wallets::utils::adjust_balance` within database transactions to prevent race conditions.
 
 ---
 
@@ -157,7 +157,7 @@ These tables handle deep item-level logging when the user uploads a shopping rec
 
 ### `purchases`, `purchase_items`, `purchase_imports`
 
-- **Orchestration**: The **`tameio_core::services::ocr`** service manages the pipeline from raw file upload to structured purchase creation.
+- **Orchestration**: The **`keiri_core::services::ocr`** service manages the pipeline from raw file upload to structured purchase creation.
 
 ---
 
@@ -165,7 +165,7 @@ These tables handle deep item-level logging when the user uploads a shopping rec
 
 ### `subscriptions`, `subscription_charges`, `sub_alerts`
 
-- **Detection Algorithm**: Recurring patterns are surfaced by an algorithmic pass in **`tameio_core::services::subscriptions::detection`**, traversing historical transactions.
+- **Detection Algorithm**: Recurring patterns are surfaced by an algorithmic pass in **`keiri_core::services::subscriptions::detection`**, traversing historical transactions.
 
 ---
 
@@ -177,11 +177,11 @@ These tables handle deep item-level logging when the user uploads a shopping rec
 
 ### `groups`, `user_groups`
 
-- **Collaborative Ledgers**: Role-based access control (RBAC) is implemented in `tameio_core::services::groups`.
+- **Collaborative Ledgers**: Role-based access control (RBAC) is implemented in `keiri_core::services::groups`.
 
 ### `p2p_requests`, `p2p_transfers`, `ledger_tabs`
 
-- **Settlement Orchestration**: P2P request flows, including mirroring transactions upon acceptance, are governed by the `tameio_core::services::p2p` module.
+- **Settlement Orchestration**: P2P request flows, including mirroring transactions upon acceptance, are governed by the `keiri_core::services::p2p` module.
 
 ---
 

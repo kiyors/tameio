@@ -14,8 +14,8 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
-} from "@tameio/ui/components/dropdown-menu";
-import { cn } from "@tameio/ui/lib/utils";
+} from "@keiri/ui/components/dropdown-menu";
+import { cn } from "@keiri/ui/lib/utils";
 import { CheckIcon } from "lucide-react";
 import type * as React from "react";
 

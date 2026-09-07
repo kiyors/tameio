@@ -1,4 +1,4 @@
-import { Button } from "@tameio/ui/components/button";
+import { Button } from "@keiri/ui/components/button";
 import { SparklesIcon, Trash2Icon } from "lucide-react";
 
 import { useDemoData } from "@/hooks/UseDemoData";
@@ -12,7 +12,7 @@ export function DemoBanner() {
     <div className="bg-primary/10 border-b border-primary/20 px-4 py-2 flex items-center justify-between">
       <div className="flex items-center gap-2 text-sm text-primary font-medium">
         <SparklesIcon className="size-4 animate-pulse" />
-        <span className="hidden sm:inline">You are currently exploring Tameio with Demo Data.</span>
+        <span className="hidden sm:inline">You are currently exploring Keiri with Demo Data.</span>
         <span className="sm:hidden">Demo Data Active</span>
       </div>
       <Button

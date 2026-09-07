@@ -17,7 +17,7 @@ pub async fn ensure_system_categories(db: &DatabaseConnection) -> Result<(), App
         let user = entities::users::ActiveModel {
             id: Set("system".to_string()),
             name: Set("System".to_string()),
-            email: Set("system@tameio.internal".to_string()),
+            email: Set("system@keiri.internal".to_string()),
             email_verified: Set(true),
             is_active: Set(false),
             created_at: Set(now),

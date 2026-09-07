@@ -4,7 +4,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-} from "@tameio/ui/components/sidebar";
+} from "@keiri/ui/components/sidebar";
 import { Link } from "@tanstack/react-router";
 import type * as React from "react";
 

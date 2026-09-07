@@ -1,8 +1,8 @@
-import type { Category } from "@tameio/types";
-import { Button } from "@tameio/ui/components/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@tameio/ui/components/card";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { Input } from "@tameio/ui/components/input";
+import type { Category } from "@keiri/types";
+import { Button } from "@keiri/ui/components/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@keiri/ui/components/card";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { Input } from "@keiri/ui/components/input";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { Loader2Icon, PlusIcon, TagIcon, Trash2Icon } from "lucide-react";
 import * as React from "react";

@@ -1,10 +1,10 @@
 <svg viewBox="0 0 360 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Tameio</title>
-  <desc id="desc">Tameio wordmark with the Treasury Tau symbol.</desc>
+  <title id="title">Keiri</title>
+  <desc id="desc">Keiri wordmark with the Treasury Tau symbol.</desc>
   <g transform="translate(8 8) scale(.84)" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
     <path d="M21 77V49c0-18 12.8-32 29-32s29 14 29 32v28" stroke-width="7"/>
     <path d="M28 79h44" stroke-width="7"/>
     <path d="M35 42h30M50 43v25" stroke-width="8"/>
   </g>
-  <text x="112" y="66" fill="currentColor" font-family="Geist, Inter, ui-sans-serif, system-ui, sans-serif" font-size="50" font-weight="540" letter-spacing="-2.2">Tameio</text>
+  <text x="112" y="66" fill="currentColor" font-family="Geist, Inter, ui-sans-serif, system-ui, sans-serif" font-size="50" font-weight="540" letter-spacing="-2.2">Keiri</text>
 </svg>

@@ -2,7 +2,7 @@
 // biome-ignore-all lint/a11y/useSemanticElements: <hr> would force block layout; flex item separator is intentional
 // biome-ignore-all lint/a11y/useAriaPropsForRole: visual separator without value; aria-valuenow would be misleading
 
-import { cn } from "@tameio/ui/lib/utils";
+import { cn } from "@keiri/ui/lib/utils";
 import { OTPInput, OTPInputContext } from "input-otp";
 import { MinusIcon } from "lucide-react";
 import * as React from "react";

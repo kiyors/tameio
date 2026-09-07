@@ -1,4 +1,4 @@
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@tameio/ui/components/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@keiri/ui/components/dialog";
 
 import { useGlobalStore } from "@/lib/Store";
 

@@ -1,6 +1,6 @@
 # Shared Workspace Packages (`packages/`)
 
-To maintain consistency and reduce duplication across the Dashboard and Mobile apps, Tameio utilizes shared workspace packages for UI components and TypeScript types.
+To maintain consistency and reduce duplication across the Dashboard and Mobile apps, Keiri utilizes shared workspace packages for UI components and TypeScript types.
 
 ## 1. UI Component Library (`packages/ui`)
 
@@ -11,7 +11,7 @@ A design-system-first library built with **Tailwind CSS v4** and headless compon
   - **`src/styles/globals.css`**: The central Tailwind configuration and CSS variables for the entire ecosystem.
   - **`src/lib/utils.ts`**: Common styling utilities like `cn` (clsx + tailwind-merge).
 - **Consumption**:
-  - Components are exported via sub-paths: `import { Button } from "@tameio/ui/components/button"`.
+  - Components are exported via sub-paths: `import { Button } from "@keiri/ui/components/button"`.
   - Used by both `apps/dashboard` (Next.js) and `apps/app` (via NativeWind bridging).
 
 ---

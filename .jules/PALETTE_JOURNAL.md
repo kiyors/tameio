@@ -5,4 +5,4 @@
 
 ### UX Learnings
 
-- **Authentication Forms:** The `@expent/ui` `<Button>` component does not have a built-in `loading` prop. To present a loading state to the user during form submission (e.g., during sign in/up), we should explicitly conditionally render a spinner like `Loader2Icon` from `lucide-react` with an `animate-spin` class, rather than just changing the text.
+- **Authentication Forms:** The `@keiri/ui` `<Button>` component does not have a built-in `loading` prop. To present a loading state to the user during form submission (e.g., during sign in/up), we should explicitly conditionally render a spinner like `Loader2Icon` from `lucide-react` with an `animate-spin` class, rather than just changing the text.

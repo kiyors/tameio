@@ -1,8 +1,8 @@
-import { Button } from "@tameio/ui/components/button";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { Label } from "@tameio/ui/components/label";
-import { RadioGroup, RadioGroupItem } from "@tameio/ui/components/radio-group";
-import { Separator } from "@tameio/ui/components/separator";
+import { Button } from "@keiri/ui/components/button";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { Label } from "@keiri/ui/components/label";
+import { RadioGroup, RadioGroupItem } from "@keiri/ui/components/radio-group";
+import { Separator } from "@keiri/ui/components/separator";
 import { createFileRoute } from "@tanstack/react-router";
 import { MonitorIcon, MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";

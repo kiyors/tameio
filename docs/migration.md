@@ -1,8 +1,8 @@
-# Tameio Database Migrations Architecture (`crates/migration`)
+# Keiri Database Migrations Architecture (`crates/migration`)
 
 This document strictly defines the operational procedures and history mapping handled intrinsically by the `crates/migration` package.
 
-Unlike standard ORM implementations, Tameio explicitly abstracts execution of database versioning cleanly into its own unified crate (`crates/migration`) driven directly by SeaORM internals and managed within the workspace dependency graph.
+Unlike standard ORM implementations, Keiri explicitly abstracts execution of database versioning cleanly into its own unified crate (`crates/migration`) driven directly by SeaORM internals and managed within the workspace dependency graph.
 
 ## Architectural Overview
 
@@ -37,7 +37,7 @@ _The following operations are already mapped to `db::entities::_`and`docs/databa
 
 ## 2. Bootstrapping Execution
 
-Tameio executes standard upgrades inherently within the architecture bounds:
+Keiri executes standard upgrades inherently within the architecture bounds:
 
 ### The `Migrator` Struct (`src/lib.rs`)
 
@@ -45,7 +45,7 @@ The `lib.rs` file defines a `Migrator` struct implementing `sea_orm_migration::M
 
 ### Production / Runtime Automation
 
-1. The **`tameio_core`** hub handles the connection to the database.
+1. The **`keiri_core`** hub handles the connection to the database.
 2. The migrator is typically invoked during the initialization phase of the application stack.
 3. Because changes are executed progressively in the same transaction loop, an application _never_ boots connected to a drifted database state.
 

@@ -136,7 +136,7 @@ pub async fn list_ledger_tabs_handler(
     State(state): State<AppState>,
     session: AuthSession,
 ) -> Result<Json<Vec<db::entities::ledger_tabs::Model>>, ApiError> {
-    use tameio_core::sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
+    use keiri_core::sea_orm::{ColumnTrait, EntityTrait, QueryFilter};
     let result = db::entities::ledger_tabs::Entity::find()
         .filter(db::entities::ledger_tabs::Column::CreatorId.eq(&session.user.id))
         .all(&*state.core.db)

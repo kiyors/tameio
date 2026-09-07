@@ -1,5 +1,5 @@
+use keiri_core::{Core, CoreConfig};
 use migration::{Migrator, MigratorTrait};
-use tameio_core::{Core, CoreConfig};
 
 pub async fn setup_test_core() -> Core {
     // Honour `DATABASE_URL` when set so CI can run the same integration suite

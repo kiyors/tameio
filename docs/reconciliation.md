@@ -2,7 +2,7 @@
 
 The Reconciliation service allows users to upload raw bank statements and match them against recorded transactions, ensuring the digital ledger matches real-world bank records.
 
-> **Naming note:** `tameio_core::services::reconciliation` describes the **target** layout. The working path today is `tameio_core::reconciliation` (facade over the `reconciliation` crate). See `docs/core.md`.
+> **Naming note:** `keiri_core::services::reconciliation` describes the **target** layout. The working path today is `keiri_core::reconciliation` (facade over the `reconciliation` crate). See `docs/core.md`.
 
 ## 1. Logic Workflow
 
@@ -35,7 +35,7 @@ When a user confirms a match, the system:
 
 ## 2. Service Hub Orchestration
 
-Managed by **`tameio_core::services::reconciliation`**.
+Managed by **`keiri_core::services::reconciliation`**.
 
 - **Transaction Integrity**: Confirmation logic is wrapped in a database transaction. If the match fails to record, the row status remains unmatched.
 - **Deduplication**: Unmatched rows are surfaced on the dashboard to prompt the user to either "Match" or "Create New Transaction" from the row data.

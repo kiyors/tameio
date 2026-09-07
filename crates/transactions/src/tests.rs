@@ -13,7 +13,7 @@ async fn setup_test_db() -> DatabaseConnection {
     let now = chrono::Utc::now().into();
     let system_user = entities::users::ActiveModel {
         id: Set("system".to_string()),
-        email: Set("system@tameio.app".to_string()),
+        email: Set("system@keiri.app".to_string()),
         name: Set("System".to_string()),
         created_at: Set(now),
         updated_at: Set(now),
@@ -201,4 +201,43 @@ async fn test_list_transactions_with_relations() {
     assert_eq!(item.category_name, Some("Food".to_string()));
     assert_eq!(item.source_wallet_name, Some("Bank".to_string()));
     assert_eq!(item.contact_name, Some("Starbucks".to_string()));
+}
+
+#[tokio::test]
+async fn test_split_transaction_performance() {
+    let db = setup_test_db().await;
+    let user = create_test_user(&db, "user_1").await;
+    let now = chrono::Utc::now().into();
+
+    let txn = entities::transactions::ActiveModel {
+        id: Set("txn_1".to_string()),
+        user_id: Set(user.id.clone()),
+        amount: Set(Decimal::from(1000)),
+        direction: Set(TransactionDirection::Out),
+        date: Set(now),
+        source: Set(TransactionSource::Manual),
+        status: Set(TransactionStatus::Completed),
+        ..Default::default()
+    };
+    entities::transactions::Entity::insert(txn)
+        .exec(&db)
+        .await
+        .unwrap();
+
+    let mut splits = Vec::new();
+    for i in 0..1000 {
+        splits.push(SplitDetail {
+            receiver_email: format!("user{i}@example.com"),
+            amount: Decimal::from(1),
+        });
+    }
+
+    let start = std::time::Instant::now();
+    let results = ops::split_transaction(&db, &user.id, "txn_1", splits)
+        .await
+        .unwrap();
+    let duration = start.elapsed();
+
+    assert_eq!(results.len(), 1000);
+    println!("split_transaction 1000 splits took: {duration:?}");
 }

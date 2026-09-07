@@ -1,5 +1,5 @@
-import type { Budget, BudgetHealth, CreateBudgetRequest, UpdateBudgetRequest, ValidationResult } from "@tameio/types";
-import { validateBudgetWasm } from "@tameio/wasm";
+import type { Budget, BudgetHealth, CreateBudgetRequest, UpdateBudgetRequest, ValidationResult } from "@keiri/types";
+import { validateBudgetWasm } from "@keiri/wasm";
 import { useLiveQuery } from "@tanstack/react-db";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 

@@ -84,7 +84,7 @@ The instructions in this file are foundational and take absolute precedence over
 
 - **TDD Cycle**: Mandatory Red-Green-Refactor cycle for all new development.
 - **API-Heavy Philosophy**: Prioritize testing backend logic over frontend UI.
-  - **Rust Backend**: Heavy emphasis on core logic unit testing (`tameio_core`) and API endpoint integration testing using `rstest`. Parameterize edge cases for all financial math.
+  - **Rust Backend**: Heavy emphasis on core logic unit testing (`keiri_core`) and API endpoint integration testing using `rstest`. Parameterize edge cases for all financial math.
   - **TypeScript Frontend**: Use `vitest` strictly for headless utility functions, state, and complex hooks in `apps/dashboard`. Do NOT write UI component tests or browser-based E2E tests unless explicitly requested.
 - **Function Coverage**: Create comprehensive tests for EVERY new backend function before it is considered complete.
 

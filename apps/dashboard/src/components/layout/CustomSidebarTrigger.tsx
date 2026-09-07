@@ -1,6 +1,6 @@
-import { Kbd, KbdGroup } from "@tameio/ui/components/kbd";
-import { SidebarTrigger } from "@tameio/ui/components/sidebar";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@tameio/ui/components/tooltip";
+import { Kbd, KbdGroup } from "@keiri/ui/components/kbd";
+import { SidebarTrigger } from "@keiri/ui/components/sidebar";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@keiri/ui/components/tooltip";
 
 export function CustomSidebarTrigger() {
   return (

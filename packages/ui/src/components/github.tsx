@@ -1,4 +1,4 @@
-import { cn } from "@tameio/ui/lib/utils";
+import { cn } from "@keiri/ui/lib/utils";
 import type { Variants } from "motion/react";
 import { motion, useAnimation } from "motion/react";
 import type { HTMLAttributes } from "react";

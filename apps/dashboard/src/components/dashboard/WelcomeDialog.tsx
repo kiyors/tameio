@@ -1,5 +1,5 @@
-import { Button } from "@tameio/ui/components/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@tameio/ui/components/dialog";
+import { Button } from "@keiri/ui/components/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@keiri/ui/components/dialog";
 import { SparklesIcon, Trash2Icon } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -14,7 +14,7 @@ export function WelcomeDialog() {
   useEffect(() => {
     if (isDemoLoading || isSummaryLoading) return;
 
-    const hasDeclined = localStorage.getItem("tameio_declined_demo") === "true";
+    const hasDeclined = localStorage.getItem("keiri_declined_demo") === "true";
     if (!hasDeclined && !isActive && summary?.total_transactions === 0) {
       setOpen(true);
     }
@@ -29,7 +29,7 @@ export function WelcomeDialog() {
   };
 
   const handleDecline = () => {
-    localStorage.setItem("tameio_declined_demo", "true");
+    localStorage.setItem("keiri_declined_demo", "true");
     setOpen(false);
   };
 
@@ -44,10 +44,10 @@ export function WelcomeDialog() {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <SparklesIcon className="size-5 text-primary" />
-            Welcome to Tameio!
+            Welcome to Keiri!
           </DialogTitle>
           <DialogDescription>
-            It looks like you don't have any data yet. Would you like to explore Tameio with sample demo data?
+            It looks like you don't have any data yet. Would you like to explore Keiri with sample demo data?
           </DialogDescription>
         </DialogHeader>
         <div className="flex flex-col gap-4 py-4">
@@ -78,7 +78,7 @@ export function DemoBanner() {
     <div className="bg-primary/10 border-b border-primary/20 px-4 py-2 flex items-center justify-between">
       <div className="flex items-center gap-2 text-sm text-primary font-medium">
         <SparklesIcon className="size-4 animate-pulse" />
-        You are currently exploring Tameio with Demo Data.
+        You are currently exploring Keiri with Demo Data.
       </div>
       <Button
         variant="destructive"

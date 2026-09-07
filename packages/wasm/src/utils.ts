@@ -14,11 +14,11 @@ import type {
   Txn,
   TxnPattern,
   Wallet,
-} from "@tameio/types";
+} from "@keiri/types";
 
 import * as wasm from "../pkg/wasm";
 
-export function loadTameioWasm() {
+export function loadKeiriWasm() {
   return wasm;
 }
 

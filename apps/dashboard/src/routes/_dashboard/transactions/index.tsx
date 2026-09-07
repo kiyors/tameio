@@ -1,8 +1,8 @@
-import type { OcrTransactionResponse, TransactionWithDetail, TypedProcessedOcr } from "@tameio/types";
-import { Badge } from "@tameio/ui/components/badge";
-import { Button } from "@tameio/ui/components/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@tameio/ui/components/card";
-import { Checkbox } from "@tameio/ui/components/checkbox";
+import type { OcrTransactionResponse, TransactionWithDetail, TypedProcessedOcr } from "@keiri/types";
+import { Badge } from "@keiri/ui/components/badge";
+import { Button } from "@keiri/ui/components/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@keiri/ui/components/card";
+import { Checkbox } from "@keiri/ui/components/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -10,14 +10,14 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@tameio/ui/components/dropdown-menu";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { Input } from "@tameio/ui/components/input";
-import { Label } from "@tameio/ui/components/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@tameio/ui/components/select";
-import { Skeleton } from "@tameio/ui/components/skeleton";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@tameio/ui/components/table";
-import { Tabs, TabsList, TabsTrigger } from "@tameio/ui/components/tabs";
+} from "@keiri/ui/components/dropdown-menu";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { Input } from "@keiri/ui/components/input";
+import { Label } from "@keiri/ui/components/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@keiri/ui/components/select";
+import { Skeleton } from "@keiri/ui/components/skeleton";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@keiri/ui/components/table";
+import { Tabs, TabsList, TabsTrigger } from "@keiri/ui/components/tabs";
 import { useQueryClient } from "@tanstack/react-query";
 import { createFileRoute } from "@tanstack/react-router";
 import type { ColumnDef, ColumnFiltersState, SortingState, VisibilityState } from "@tanstack/react-table";

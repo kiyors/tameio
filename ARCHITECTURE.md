@@ -5,12 +5,12 @@ This document serves as a critical, living template designed to equip agents wit
 ## 1. Project Structure
 
 ```
-tameio/
+keiri/
 ├── apps/
 │   ├── api/                    # Rust Axum REST API server (thin routing layer)
 │   │   ├── src/
 │   │   │   ├── main.rs         # Entry point: Core::init, migrations, worker spawn, bind :7878
-│   │   │   ├── routes/         # Route handlers delegating to tameio_core
+│   │   │   ├── routes/         # Route handlers delegating to keiri_core
 │   │   │   ├── middleware/     # Error types, metrics, per-user rate limiting
 │   │   │   ├── extractors.rs   # ValidatedJson<T> request validation
 │   │   │   └── background_tasks.rs  # BulkConfirmOcrJobHandler
@@ -23,7 +23,7 @@ tameio/
 │       │   └── lib/            # ApiClient, QueryKeys, auth-client, OPFS/wa-sqlite
 │       └── package.json
 ├── crates/
-│   ├── tameio_core/            # Central Hub ("Brain") — orchestrates all domain crates
+│   ├── keiri_core/            # Central Hub ("Brain") — orchestrates all domain crates
 │   │   └── src/
 │   │       ├── lib.rs          # Core struct: Arc<DB>, Auth, S3, OCR + 10 domain managers
 │   │       └── services/       # demo.rs, ocr.rs (cross-crate orchestration)
@@ -71,7 +71,7 @@ tameio/
                           │
                    [Route Handlers]  ── thin delegation layer
                           │
-                   [tameio_core::Core]  ── central orchestrator
+                   [keiri_core::Core]  ── central orchestrator
                     ┌─────┼─────┬──────┬──────┐
                     │     │     │      │      │
               [Transactions] [OCR] [Groups] [Budgets] ... (10 domain managers)
@@ -98,15 +98,15 @@ tameio/
 
 #### 3.2.1. API Gateway (`apps/api`)
 
-**Description:** Thin Axum routing layer that delegates all business logic to `tameio_core`. Handles authentication (AuthSession extractor), rate limiting (Governor + per-user token buckets), request validation (ValidatedJson), metrics (Prometheus), and background worker orchestration.
+**Description:** Thin Axum routing layer that delegates all business logic to `keiri_core`. Handles authentication (AuthSession extractor), rate limiting (Governor + per-user token buckets), request validation (ValidatedJson), metrics (Prometheus), and background worker orchestration.
 
 **Technologies:** Rust, Axum 0.8, tower-http, tower_governor, mimalloc, tokio
 
 **Deployment:** Single binary on port 7878, auto-runs DB migrations on startup
 
-#### 3.2.2. Core Hub (`crates/tameio_core`)
+#### 3.2.2. Core Hub (`crates/keiri_core`)
 
-**Description:** The "Brain" — a `Core` struct holding `Arc<DatabaseConnection>`, Auth, S3 client, OCR manager, and 10 domain managers. Re-exports all domain crates so `apps/api` only depends on `tameio_core`. Implements `OcrProcessor` trait for cross-crate OCR orchestration.
+**Description:** The "Brain" — a `Core` struct holding `Arc<DatabaseConnection>`, Auth, S3 client, OCR manager, and 10 domain managers. Re-exports all domain crates so `apps/api` only depends on `keiri_core`. Implements `OcrProcessor` trait for cross-crate OCR orchestration.
 
 **Technologies:** Rust, SeaORM, better-auth, aws-sdk-s3, tokio
 
@@ -184,7 +184,7 @@ tameio/
 
 **Testing Frameworks:**
 
-- Rust: `rstest` (unit + integration), `cargo test -p tameio_core --lib`
+- Rust: `rstest` (unit + integration), `cargo test -p keiri_core --lib`
 - Frontend: `vitest` (headless logic only, no UI E2E)
 
 **Code Quality:**
@@ -197,15 +197,15 @@ tameio/
 
 ## 9. Future Considerations / Roadmap
 
-- **Service consolidation:** Domain crate logic migrating from `crates/<domain>/` into `tameio_core/src/services/` for unified orchestration
+- **Service consolidation:** Domain crate logic migrating from `crates/<domain>/` into `keiri_core/src/services/` for unified orchestration
 - **Auth expansion:** TwoFactorOps, PasskeyOps, OrganizationOps, ApiKeyOps are stubbed in `crates/auth` — ready for implementation
 - **Mobile app:** `apps/app` scripts exist in package.json (Capacitor/Expo target)
 
 ## 10. Project Identification
 
-**Project Name:** Tameio
+**Project Name:** Keiri
 
-**Repository URL:** github.com/kiyors/tameio
+**Repository URL:** github.com/kiyors/keiri
 
 **Primary Contact/Team:** Gaurav (kiyors)
 
@@ -215,7 +215,7 @@ tameio/
 
 | Term             | Definition                                                                                            |
 | ---------------- | ----------------------------------------------------------------------------------------------------- |
-| **Core**         | The `tameio_core::Core` struct — central orchestrator holding all service managers                    |
+| **Core**         | The `keiri_core::Core` struct — central orchestrator holding all service managers                     |
 | **Domain Crate** | A Rust crate under `crates/` implementing business logic for one domain (wallets, transactions, etc.) |
 | **OCR**          | Optical Character Recognition — receipt scanning via Gemini AI                                        |
 | **OPFS**         | Origin Private File System — browser API for local SQLite storage                                     |

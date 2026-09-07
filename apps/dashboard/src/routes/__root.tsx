@@ -37,11 +37,11 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
         content: "width=device-width, initial-scale=1",
       },
       {
-        title: "Tameio",
+        title: "Keiri",
       },
       {
         name: "description",
-        content: "Manage your expenses intelligently.",
+        content: "Intelligent bookkeeping, OCR receipt management, and accounting.",
       },
     ],
     links: [

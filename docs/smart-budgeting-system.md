@@ -4,7 +4,7 @@ The Smart Budgeting System allows users to set spending limits per category (or 
 
 ## 1. Architectural Overview
 
-Managed via the `budgets` crate, surfaced as `tameio_core::budgets` (target: `tameio_core::services::budgets`; see `docs/core.md`).
+Managed via the `budgets` crate, surfaced as `keiri_core::budgets` (target: `keiri_core::services::budgets`; see `docs/core.md`).
 
 - **Logic Hub**: The `BudgetsManager` in `crates/budgets` calculates "Budget Health" by aggregating actual outbound transactions against user-defined limits. In the `get_all_budget_health` function, this relies on a precise SeaORM query that sums amounts: `transactions::Entity::find().filter(transactions::Column::Direction.eq("OUT"))`, specifically bounded by the calculated start and end dates.
 - **Period Handling**: Supports dynamic date range calculation for Weekly (Monday-start), Monthly, and Yearly cycles.

@@ -1,5 +1,5 @@
 [package]
-name = "tameio_core"
+name = "keiri_core"
 version.workspace = true
 edition.workspace = true
 

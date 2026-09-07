@@ -5,8 +5,8 @@ use axum::Router;
 use axum::extract::State;
 use axum::http::StatusCode;
 use axum::routing::{get, post};
+use keiri_core::services::demo;
 use serde::Serialize;
-use tameio_core::services::demo;
 
 pub fn router() -> Router<AppState> {
     Router::new()

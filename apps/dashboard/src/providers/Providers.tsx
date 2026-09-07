@@ -1,5 +1,5 @@
-import { Toaster } from "@tameio/ui/components/goey-toaster";
-import { TooltipProvider } from "@tameio/ui/components/tooltip";
+import { Toaster } from "@keiri/ui/components/goey-toaster";
+import { TooltipProvider } from "@keiri/ui/components/tooltip";
 import { HotkeysProvider } from "@tanstack/react-hotkeys";
 import { domAnimation, LazyMotion, MotionConfig } from "motion/react";
 import { useTheme } from "next-themes";

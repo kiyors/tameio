@@ -11,7 +11,7 @@ Ensure your `DATABASE_URL` is set in the environment or `.env` file.
 For a local SQLite database, use:
 
 ```sh
-DATABASE_URL="sqlite://tameio.db?mode=rwc"
+DATABASE_URL="sqlite://keiri.db?mode=rwc"
 ```
 
 The `?mode=rwc` flag tells SQLite to create the file if it doesn't exist.

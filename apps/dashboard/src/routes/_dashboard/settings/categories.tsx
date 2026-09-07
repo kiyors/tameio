@@ -1,7 +1,7 @@
-import type { Category } from "@tameio/types";
-import { Button } from "@tameio/ui/components/button";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { Separator } from "@tameio/ui/components/separator";
+import type { Category } from "@keiri/types";
+import { Button } from "@keiri/ui/components/button";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { Separator } from "@keiri/ui/components/separator";
 import { createFileRoute } from "@tanstack/react-router";
 import { LockIcon, PlusIcon, TagIcon, Trash2Icon } from "lucide-react";
 import * as React from "react";

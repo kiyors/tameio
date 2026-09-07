@@ -2,7 +2,7 @@
 members = [
   "apps/api",
   "crates/auth",
-  "crates/tameio_core",
+  "crates/keiri_core",
   "crates/db",
   "crates/migration",
   "crates/ocr",
@@ -32,7 +32,7 @@ categories = { path = "crates/categories", version = "0.2.0" }
 contacts = { path = "crates/contacts", version = "0.2.0" }
 db = { path = "crates/db", version = "0.2.0" }
 
-tameio_core = { path = "crates/tameio_core", version = "0.2.0" }
+keiri_core = { path = "crates/keiri_core", version = "0.2.0" }
 groups = { path = "crates/groups", version = "0.2.0" }
 jobs = { path = "crates/jobs", version = "0.2.0" }
 migration = { path = "crates/migration", version = "0.2.0" }

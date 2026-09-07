@@ -1,5 +1,5 @@
-import { buttonVariants } from "@tameio/ui/components/button";
-import { cn } from "@tameio/ui/lib/utils";
+import { buttonVariants } from "@keiri/ui/components/button";
+import { cn } from "@keiri/ui/lib/utils";
 import { Link, useLocation } from "@tanstack/react-router";
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {

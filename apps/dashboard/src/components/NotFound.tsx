@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-has-content, jsx-a11y/control-has-associated-label */
-import { Button } from "@tameio/ui/components/button";
-import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyTitle } from "@tameio/ui/components/empty";
+import { Button } from "@keiri/ui/components/button";
+import { Empty, EmptyContent, EmptyDescription, EmptyHeader, EmptyTitle } from "@keiri/ui/components/empty";
 import { HomeIcon } from "lucide-react";
 
 export function NotFoundPage() {

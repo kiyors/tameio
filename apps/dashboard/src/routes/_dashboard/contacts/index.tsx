@@ -1,7 +1,7 @@
-import type { Contact } from "@tameio/types";
-import { Alert, AlertDescription, AlertTitle } from "@tameio/ui/components/alert";
-import { Button } from "@tameio/ui/components/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@tameio/ui/components/card";
+import type { Contact } from "@keiri/types";
+import { Alert, AlertDescription, AlertTitle } from "@keiri/ui/components/alert";
+import { Button } from "@keiri/ui/components/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@keiri/ui/components/card";
 import {
   Dialog,
   DialogContent,
@@ -10,11 +10,11 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@tameio/ui/components/dialog";
-import { Input } from "@tameio/ui/components/input";
-import { Label } from "@tameio/ui/components/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@tameio/ui/components/select";
-import { useFuzzySearch } from "@tameio/wasm";
+} from "@keiri/ui/components/dialog";
+import { Input } from "@keiri/ui/components/input";
+import { Label } from "@keiri/ui/components/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@keiri/ui/components/select";
+import { useFuzzySearch } from "@keiri/wasm";
 import type { UseMutationResult } from "@tanstack/react-query";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import {

@@ -4,11 +4,11 @@ use axum::{
     http::{HeaderValue, Method},
     routing::get,
 };
+pub use keiri_core::auth::AuthSession;
+use keiri_core::better_auth::AxumIntegration;
+use keiri_core::{Core, CoreConfig, sea_orm::DatabaseConnection};
 use std::net::SocketAddr;
 use std::sync::Arc;
-pub use tameio_core::auth::AuthSession;
-use tameio_core::better_auth::AxumIntegration;
-use tameio_core::{Core, CoreConfig, sea_orm::DatabaseConnection};
 use tower_governor::{GovernorLayer, governor::GovernorConfigBuilder};
 use tower_http::LatencyUnit;
 use tower_http::compression::CompressionLayer;
@@ -42,7 +42,7 @@ impl FromRef<AppState> for Arc<DatabaseConnection> {
 }
 
 impl FromRef<AppState>
-    for Arc<tameio_core::better_auth::BetterAuth<tameio_core::auth::adapter::PostgresAdapter>>
+    for Arc<keiri_core::better_auth::BetterAuth<keiri_core::auth::adapter::PostgresAdapter>>
 {
     fn from_ref(state: &AppState) -> Self {
         state.core.auth.clone()

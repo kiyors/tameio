@@ -79,7 +79,7 @@ impl IntoResponse for ApiError {
     }
 }
 
-use tameio_core::sea_orm::DbErr;
+use keiri_core::sea_orm::DbErr;
 
 impl From<DbErr> for ApiError {
     fn from(err: DbErr) -> Self {

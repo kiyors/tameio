@@ -1,7 +1,7 @@
-import { Button } from "@tameio/ui/components/button";
-import { Progress, ProgressIndicator, ProgressTrack } from "@tameio/ui/components/Progress";
-import { cn } from "@tameio/ui/lib/utils";
-import { calculateSpendingVelocityWasm } from "@tameio/wasm";
+import { Button } from "@keiri/ui/components/button";
+import { Progress, ProgressIndicator, ProgressTrack } from "@keiri/ui/components/Progress";
+import { cn } from "@keiri/ui/lib/utils";
+import { calculateSpendingVelocityWasm } from "@keiri/wasm";
 import { useNavigate } from "@tanstack/react-router";
 import { TargetIcon } from "lucide-react";
 import { useEffect, useState, useTransition } from "react";

@@ -1,7 +1,7 @@
-import { Badge } from "@tameio/ui/components/badge";
-import { Button } from "@tameio/ui/components/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@tameio/ui/components/card";
-import { toast } from "@tameio/ui/components/goey-toaster";
+import { Badge } from "@keiri/ui/components/badge";
+import { Button } from "@keiri/ui/components/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@keiri/ui/components/card";
+import { toast } from "@keiri/ui/components/goey-toaster";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { FingerprintIcon, KeyIcon, LaptopIcon, PlusIcon, SmartphoneIcon, Trash2Icon } from "lucide-react";
 
@@ -27,7 +27,7 @@ export function SecurityPanel() {
   const { data: activeSessions } = useQuery({
     queryKey: ["active-sessions"],
     // better-auth returns session objects with id + ip + ua + timestamps; the
-    // shared @tameio/types Session is server-side only, so we describe just
+    // shared @keiri/types Session is server-side only, so we describe just
     // the surface this panel renders rather than pulling in a full type.
     queryFn: () =>
       api.get<

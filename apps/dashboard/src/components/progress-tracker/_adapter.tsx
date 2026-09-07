@@ -1,1 +1,1 @@
-export { cn } from "@tameio/ui/lib/utils";
+export { cn } from "@keiri/ui/lib/utils";

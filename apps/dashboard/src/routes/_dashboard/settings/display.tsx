@@ -1,9 +1,9 @@
-import { Button } from "@tameio/ui/components/button";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { Label } from "@tameio/ui/components/label";
-import { RadioGroup, RadioGroupItem } from "@tameio/ui/components/radio-group";
-import { Separator } from "@tameio/ui/components/separator";
-import { Switch } from "@tameio/ui/components/switch";
+import { Button } from "@keiri/ui/components/button";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { Label } from "@keiri/ui/components/label";
+import { RadioGroup, RadioGroupItem } from "@keiri/ui/components/radio-group";
+import { Separator } from "@keiri/ui/components/separator";
+import { Switch } from "@keiri/ui/components/switch";
 import { createFileRoute } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/_dashboard/settings/display")({

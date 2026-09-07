@@ -1,4 +1,4 @@
-import { toast } from "@tameio/ui/components/goey-toaster";
+import { toast } from "@keiri/ui/components/goey-toaster";
 
 /**
  * Validates a PDF file's page count using Mozilla's pdfjs-dist.

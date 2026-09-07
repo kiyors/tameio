@@ -1,6 +1,6 @@
+use keiri_core::{Core, CoreConfig};
 use rstest::*;
 use std::sync::Arc;
-use tameio_core::{Core, CoreConfig};
 use tracing_test::traced_test;
 
 // Fixture for a default, valid CoreConfig

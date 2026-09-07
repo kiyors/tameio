@@ -8,7 +8,7 @@ use sea_orm::{ColumnTrait, DatabaseConnection, EntityTrait, QueryFilter};
 use std::sync::Arc;
 use upload::UploadClient;
 
-/// Helper function to bridge with tameio_core for processing transactions.
+/// Helper function to bridge with keiri_core for processing transactions.
 pub trait OcrProcessor: Send + Sync {
     /// Full processing (includes DB insertion)
     fn process_ocr<'a>(

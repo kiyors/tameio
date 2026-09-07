@@ -6,9 +6,9 @@ import type {
   TransactionWithDetail,
   UpdateTransactionRequest,
   ValidationResult,
-} from "@tameio/types";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { useWasmWorker, validateTransactionWasm } from "@tameio/wasm";
+} from "@keiri/types";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { useWasmWorker, validateTransactionWasm } from "@keiri/wasm";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { useCategories } from "@/hooks/UseCategories";

@@ -1,10 +1,10 @@
-import type { User } from "@tameio/types";
-import { Avatar, AvatarFallback, AvatarImage } from "@tameio/ui/components/avatar";
-import { Button } from "@tameio/ui/components/button";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { Input } from "@tameio/ui/components/input";
-import { Label } from "@tameio/ui/components/label";
-import { Separator } from "@tameio/ui/components/separator";
+import type { User } from "@keiri/types";
+import { Avatar, AvatarFallback, AvatarImage } from "@keiri/ui/components/avatar";
+import { Button } from "@keiri/ui/components/button";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { Input } from "@keiri/ui/components/input";
+import { Label } from "@keiri/ui/components/label";
+import { Separator } from "@keiri/ui/components/separator";
 import { createFileRoute } from "@tanstack/react-router";
 import { CameraIcon, LoaderIcon } from "lucide-react";
 import * as React from "react";
@@ -65,7 +65,7 @@ function SettingsProfilePage() {
   React.useEffect(() => {
     if (user) {
       // The session user from better-auth carries extra runtime fields the
-      // shared @tameio/types User doesn't model (oauth provider scopes, etc.);
+      // shared @keiri/types User doesn't model (oauth provider scopes, etc.);
       // route through `unknown` so the reducer still gets a structurally
       // compatible value without a blanket `any`.
       dispatch({ type: "SET_USER_DATA", user: user as unknown as User });
@@ -202,7 +202,7 @@ function SettingsProfilePage() {
             id="username"
             value={username}
             onChange={(e) => dispatch({ type: "SET_FIELD", field: "username", value: e.target.value })}
-            placeholder="tameio_user"
+            placeholder="keiri_user"
           />
           <p className="text-[0.8rem] text-muted-foreground">
             This is your public display name. It can be your real name or a pseudonym.

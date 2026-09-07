@@ -110,7 +110,7 @@ pub async fn add_contact_identifier_handler(
 pub async fn get_merge_suggestions_handler(
     State(state): State<AppState>,
     session: AuthSession,
-) -> Result<Json<Vec<tameio_core::contacts::ops::MergeSuggestion>>, ApiError> {
+) -> Result<Json<Vec<keiri_core::contacts::ops::MergeSuggestion>>, ApiError> {
     let result = state
         .core
         .contacts

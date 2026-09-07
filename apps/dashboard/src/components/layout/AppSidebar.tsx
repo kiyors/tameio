@@ -1,4 +1,4 @@
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@tameio/ui/components/collapsible";
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@keiri/ui/components/collapsible";
 import {
   Sidebar,
   SidebarContent,
@@ -13,8 +13,8 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
   SidebarRail,
-} from "@tameio/ui/components/sidebar";
-import { cn } from "@tameio/ui/lib/utils";
+} from "@keiri/ui/components/sidebar";
+import { cn } from "@keiri/ui/lib/utils";
 import { useQueryClient } from "@tanstack/react-query";
 import { useLocation, useNavigate } from "@tanstack/react-router";
 import {
@@ -227,7 +227,7 @@ export function AppSidebar() {
       <SidebarHeader className="h-14 justify-center border-b px-2">
         <SidebarMenuButton onClick={navigateHome}>
           <LogoIcon />
-          <span className="font-medium">Tameio</span>
+          <span className="font-medium">Keiri</span>
         </SidebarMenuButton>
       </SidebarHeader>
       <SidebarContent>

@@ -11,11 +11,11 @@
   },
   "iconLibrary": "lucide",
   "aliases": {
-    "components": "@tameio/ui/components",
-    "utils": "@tameio/ui/lib/utils",
-    "hooks": "@tameio/ui/hooks",
-    "lib": "@tameio/ui/lib",
-    "ui": "@tameio/ui/components"
+    "components": "@keiri/ui/components",
+    "utils": "@keiri/ui/lib/utils",
+    "hooks": "@keiri/ui/hooks",
+    "lib": "@keiri/ui/lib",
+    "ui": "@keiri/ui/components"
   },
   "registries": {
     "@efferd": "https://efferd.com/r/{name}.json",

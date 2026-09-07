@@ -1,28 +1,28 @@
-# Tameio API Reference (`apps/api`)
+# Keiri API Reference (`apps/api`)
 
-This document covers the structure and available endpoints of the Tameio API gateway. It pairs with the [Database Schema Documentation](./database_schema.md) to provide a complete overview of how data flows from the UI to the **`tameio_core`** logic hub.
+This document covers the structure and available endpoints of the Keiri API gateway. It pairs with the [Database Schema Documentation](./database_schema.md) to provide a complete overview of how data flows from the UI to the **`keiri_core`** logic hub.
 
 ## Architectural Overview
 
 - **Framework**: Rust with [`axum`](https://docs.rs/axum/latest/axum/).
-- **Central Hub**: **`tameio_core`** handles all business logic, database connections, and service orchestration.
-- **Authentication**: [`better-auth`] integrated via **`tameio_core`**.
+- **Central Hub**: **`keiri_core`** handles all business logic, database connections, and service orchestration.
+- **Authentication**: [`better-auth`] integrated via **`keiri_core`**.
 - **Base URL**: `/api` (business logic) and `/api/auth` (authentication).
-- **Security Protocol**: Endpoints are strictly guarded via the `AuthSession` extractor (re-exported by `tameio_core`).
+- **Security Protocol**: Endpoints are strictly guarded via the `AuthSession` extractor (re-exported by `keiri_core`).
 
 ### Application State (`AppState`)
 
 The API maintains a lean state, delegating complexity to the core:
 
-| Field  | Type                | Description                                             |
-| ------ | ------------------- | ------------------------------------------------------- |
-| `core` | `tameio_core::Core` | Unified instance managing DB, Auth, S3, and Native OCR. |
+| Field  | Type               | Description                                             |
+| ------ | ------------------ | ------------------------------------------------------- |
+| `core` | `keiri_core::Core` | Unified instance managing DB, Auth, S3, and Native OCR. |
 
 ---
 
 ## 1. Transactions & Ledger
 
-Managed by **`tameio_core::services::transactions`**.
+Managed by **`keiri_core::services::transactions`**.
 
 ### `GET /api/transactions`
 
@@ -33,7 +33,7 @@ Managed by **`tameio_core::services::transactions`**.
 ### `POST /api/transactions/manual`
 
 - **Purpose**: Create a transaction manually.
-- **Logic**: Automatically triggers wallet balance adjustment in `tameio_core`.
+- **Logic**: Automatically triggers wallet balance adjustment in `keiri_core`.
 
 ### `PATCH /api/transactions/:id`
 
@@ -52,7 +52,7 @@ Managed by **`tameio_core::services::transactions`**.
 
 ## 2. Groups
 
-Managed by **`tameio_core::services::groups`**.
+Managed by **`keiri_core::services::groups`**.
 
 ### `GET /api/groups`
 
@@ -78,7 +78,7 @@ Managed by **`tameio_core::services::groups`**.
 
 ## 3. P2P & Settling
 
-Managed by **`tameio_core::services::p2p`**.
+Managed by **`keiri_core::services::p2p`**.
 
 ### `GET /api/p2p/pending`
 
@@ -100,7 +100,7 @@ Managed by **`tameio_core::services::p2p`**.
 
 ## 4. OCR & File Processing
 
-Managed by **`tameio_core::services::ocr`**.
+Managed by **`keiri_core::services::ocr`**.
 
 ### `POST /api/ocr/process`
 
@@ -115,7 +115,7 @@ Managed by **`tameio_core::services::ocr`**.
 
 ## 5. Wallets
 
-Managed by **`tameio_core::services::wallets`**.
+Managed by **`keiri_core::services::wallets`**.
 
 ### `GET /api/wallets`
 
@@ -129,7 +129,7 @@ Managed by **`tameio_core::services::wallets`**.
 
 ## 6. Subscriptions
 
-Managed by **`tameio_core::services::subscriptions`**.
+Managed by **`keiri_core::services::subscriptions`**.
 
 ### `GET /api/subscriptions/detect`
 
@@ -139,7 +139,7 @@ Managed by **`tameio_core::services::subscriptions`**.
 
 ## 7. Budgets
 
-Managed by **`tameio_core::services::budgets`**.
+Managed by **`keiri_core::services::budgets`**.
 
 ### `GET /api/budgets`
 
@@ -177,7 +177,7 @@ Powered by `better-auth` re-exports.
 
 ## 9. Demo Data
 
-Managed by **`tameio_core::services::demo`**.
+Managed by **`keiri_core::services::demo`**.
 
 ### `GET /api/demo/status`
 

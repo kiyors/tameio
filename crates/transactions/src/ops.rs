@@ -423,22 +423,45 @@ pub async fn split_transaction(
                 return Err(AppError::unauthorized("Unauthorized"));
             }
 
-            let mut results = Vec::new();
-            for split in splits {
-                let request = entities::p2p_requests::ActiveModel {
+            let purpose = format!(
+                "Split for {}",
+                txn.purpose_tag.as_deref().unwrap_or("Expense")
+            );
+            let requests: Vec<entities::p2p_requests::ActiveModel> = splits
+                .into_iter()
+                .map(|split| entities::p2p_requests::ActiveModel {
                     id: Set(uuid::Uuid::now_v7().to_string()),
                     sender_user_id: Set(sender_id.clone()),
                     receiver_email: Set(split.receiver_email),
                     transaction_data: Set(serde_json::json!({
                         "amount": split.amount,
                         "date": txn.date,
-                        "purpose": format!("Split for {}", txn.purpose_tag.as_deref().unwrap_or("Expense"))
+                        "purpose": purpose,
                     })),
                     status: Set(P2pRequestStatus::Pending),
                     linked_txn_id: Set(None),
-                };
-                let result = request.insert(txn_db).await?;
-                results.push(result);
+                })
+                .collect();
+
+            let mut results = Vec::new();
+            if !requests.is_empty() {
+                for chunk in requests.chunks(500) {
+                    entities::p2p_requests::Entity::insert_many(chunk.to_vec())
+                        .exec(txn_db)
+                        .await?;
+                }
+
+                let ids: Vec<String> = requests.iter().map(|r| r.id.as_ref().to_owned()).collect();
+
+                // Fetch the inserted requests by ID. To avoid hitting the DB limit of parameters per query
+                // (e.g. 65535 in PG, though SQLite is smaller) we chunk the lookup as well.
+                for id_chunk in ids.chunks(500) {
+                    let chunk_results = entities::p2p_requests::Entity::find()
+                        .filter(entities::p2p_requests::Column::Id.is_in(id_chunk.to_vec()))
+                        .all(txn_db)
+                        .await?;
+                    results.extend(chunk_results);
+                }
             }
             Ok(results)
         })

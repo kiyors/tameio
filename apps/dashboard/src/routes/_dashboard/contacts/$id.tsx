@@ -1,7 +1,7 @@
-import type { ContactIdentifier, IdentifierType, Transaction } from "@tameio/types";
-import { Badge } from "@tameio/ui/components/badge";
-import { Button } from "@tameio/ui/components/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@tameio/ui/components/card";
+import type { ContactIdentifier, IdentifierType, Transaction } from "@keiri/types";
+import { Badge } from "@keiri/ui/components/badge";
+import { Button } from "@keiri/ui/components/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@keiri/ui/components/card";
 import {
   Dialog,
   DialogContent,
@@ -10,12 +10,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@tameio/ui/components/dialog";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { Input } from "@tameio/ui/components/input";
-import { Label } from "@tameio/ui/components/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@tameio/ui/components/select";
-import { Separator } from "@tameio/ui/components/separator";
+} from "@keiri/ui/components/dialog";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { Input } from "@keiri/ui/components/input";
+import { Label } from "@keiri/ui/components/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@keiri/ui/components/select";
+import { Separator } from "@keiri/ui/components/separator";
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import {
   ArrowLeftIcon,

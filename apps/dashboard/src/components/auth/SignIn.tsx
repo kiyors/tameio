@@ -1,6 +1,6 @@
-import { Button } from "@tameio/ui/components/button";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { InputGroup, InputGroupAddon, InputGroupInput } from "@tameio/ui/components/input-group";
+import { Button } from "@keiri/ui/components/button";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { InputGroup, InputGroupAddon, InputGroupInput } from "@keiri/ui/components/input-group";
 import { Link, useNavigate, useSearch } from "@tanstack/react-router";
 import { AtSignIcon, ChevronLeftIcon, KeyRoundIcon, Loader2Icon } from "lucide-react";
 import { useEffect, useState, useTransition } from "react";
@@ -57,7 +57,7 @@ export function SignIn() {
         <Logo className="h-4.5 lg:hidden mx-auto" />
         <div className="flex flex-col gap-y-1 text-center">
           <h1 className="font-semibold text-2xl tracking-wide">Sign In or Join Now!</h1>
-          <p className="text-base text-muted-foreground">login or create your tameio account.</p>
+          <p className="text-base text-muted-foreground">login or create your keiri account.</p>
         </div>
 
         <SocialLogins />

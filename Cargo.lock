@@ -203,6 +203,7 @@ dependencies = [
  "futures",
  "governor",
  "jobs",
+ "keiri_core",
  "migration",
  "mimalloc",
  "ocr",
@@ -210,7 +211,6 @@ dependencies = [
  "rust_decimal",
  "serde",
  "serde_json",
- "tameio_core",
  "thiserror 2.0.18",
  "tokio",
  "tokio-util",
@@ -3560,6 +3560,44 @@ dependencies = [
 ]
 
 [[package]]
+name = "keiri_core"
+version = "0.2.0"
+dependencies = [
+ "anyhow",
+ "auth",
+ "aws-config",
+ "aws-sdk-s3",
+ "better-auth",
+ "budgets",
+ "categories",
+ "chrono",
+ "contacts",
+ "db",
+ "env_logger",
+ "fake",
+ "groups",
+ "jobs",
+ "migration",
+ "ocr",
+ "rayon",
+ "reconciliation",
+ "rstest",
+ "rust_decimal",
+ "sea-orm",
+ "serde_json",
+ "subscriptions",
+ "tokio",
+ "tokio-util",
+ "tracing",
+ "tracing-test",
+ "transactions",
+ "upload",
+ "users",
+ "uuid",
+ "wallets",
+]
+
+[[package]]
 name = "kv-log-macro"
 version = "1.0.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -6346,44 +6384,6 @@ name = "tagptr"
 version = "0.2.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "7b2093cf4c8eb1e67749a6762251bc9cd836b6fc171623bd0a9d324d37af2417"
-
-[[package]]
-name = "tameio_core"
-version = "0.2.0"
-dependencies = [
- "anyhow",
- "auth",
- "aws-config",
- "aws-sdk-s3",
- "better-auth",
- "budgets",
- "categories",
- "chrono",
- "contacts",
- "db",
- "env_logger",
- "fake",
- "groups",
- "jobs",
- "migration",
- "ocr",
- "rayon",
- "reconciliation",
- "rstest",
- "rust_decimal",
- "sea-orm",
- "serde_json",
- "subscriptions",
- "tokio",
- "tokio-util",
- "tracing",
- "tracing-test",
- "transactions",
- "upload",
- "users",
- "uuid",
- "wallets",
-]
 
 [[package]]
 name = "tap"

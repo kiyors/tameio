@@ -1,11 +1,11 @@
-import { Button } from "@tameio/ui/components/button";
+import { Button } from "@keiri/ui/components/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@tameio/ui/components/dropdown-menu";
-import { Tooltip, TooltipContent, TooltipTrigger } from "@tameio/ui/components/tooltip";
+} from "@keiri/ui/components/dropdown-menu";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@keiri/ui/components/tooltip";
 import { MoonIcon, SunIcon } from "lucide-react";
 import { useTheme } from "next-themes";
 

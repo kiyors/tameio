@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 // @vitest-environment jsdom
-import { toast } from "@tameio/ui/components/goey-toaster";
+import { toast } from "@keiri/ui/components/goey-toaster";
 import { act, renderHook } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -9,7 +9,7 @@ import { api } from "@/lib/ApiClient";
 import { useOcrUpload } from "./UseOcr";
 
 // Mock dependencies
-vi.mock("@tameio/ui/components/goey-toaster", () => ({
+vi.mock("@keiri/ui/components/goey-toaster", () => ({
   toast: {
     success: vi.fn(),
     error: vi.fn(),

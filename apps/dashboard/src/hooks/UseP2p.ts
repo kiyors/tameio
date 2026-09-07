@@ -1,5 +1,5 @@
-import type { Group, GroupMemberDetail, LedgerTab, P2pRequest, P2pRequestWithSender, Transaction } from "@tameio/types";
-import { toast } from "@tameio/ui/components/goey-toaster";
+import type { Group, GroupMemberDetail, LedgerTab, P2pRequest, P2pRequestWithSender, Transaction } from "@keiri/types";
+import { toast } from "@keiri/ui/components/goey-toaster";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { api } from "@/lib/ApiClient";

@@ -1,4 +1,4 @@
-import { toast } from "@tameio/ui/components/goey-toaster";
+import { toast } from "@keiri/ui/components/goey-toaster";
 import { useCallback, useState } from "react";
 
 export interface UseEntityFormOptions<T> {

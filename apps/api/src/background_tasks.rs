@@ -1,9 +1,9 @@
 use ::anyhow::Result;
 use ::async_trait::async_trait;
 use ::jobs::{Handler, Job};
+use keiri_core::Core;
 use serde::{Deserialize, Serialize};
 use std::sync::Arc;
-use tameio_core::Core;
 
 #[derive(Serialize, Deserialize)]
 pub struct BulkConfirmOcrJob {

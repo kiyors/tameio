@@ -4,7 +4,7 @@
 
 - **Frontend**: `apps/dashboard` (TanStack Start / React Router)
 - **Backend**: `apps/api` (Rust Axum)
-- **Central Hub**: `crates/tameio_core` (Orchestrates DB, Auth, Upload, OCR)
+- **Central Hub**: `crates/keiri_core` (Orchestrates DB, Auth, Upload, OCR)
 - **Shared**: `packages/types` (Shared TS/Rust types), `packages/ui` (Shared UI)
 - **Testing**: `rstest` (Rust Backend & API), `vitest` (Frontend Headless Logic). No UI E2E.
 
@@ -22,7 +22,7 @@
 | Format (JS)   | `pnpm fmt`                                |
 | Lint (Rust)   | `cargo clippy --fix -p <crate> -- <file>` |
 | Format (Rust) | `cargo fmt`                               |
-| Test (Rust)   | `cargo test -p tameio_core --lib`         |
+| Test (Rust)   | `cargo test -p keiri_core --lib`          |
 | Test (JS/TS)  | `pnpm vitest run path/to/file.test.ts`    |
 | Format (All)  | `pnpm fmt-all`                            |
 
@@ -104,10 +104,10 @@ When generating code or reviewing PRs, you must actively apply the loaded skills
 
 ### 6. Repository Architecture (Monorepo Boundaries)
 
-- **Central Hub (`crates/tameio_core`):** Orchestrates business rules, auth, and OCR delegation.
-  - _Current:_ logic lives in the domain crates (`crates/wallets`, `crates/transactions`, `crates/ocr`, …) and is surfaced through the `tameio_core` facade as `tameio_core::<domain>` (e.g. `tameio_core::ocr`, `tameio_core::wallets`).
-  - _Target:_ consolidate this logic under `tameio_core/src/services/`, split into granular files. New cross-crate orchestration should move toward this layout.
-- **API Entry (`apps/api`):** API routes strictly delegate to the `tameio_core` facade (`tameio_core::<domain>`; target: `tameio_core::services`). No business logic in routes.
+- **Central Hub (`crates/keiri_core`):** Orchestrates business rules, auth, and OCR delegation.
+  - _Current:_ logic lives in the domain crates (`crates/wallets`, `crates/transactions`, `crates/ocr`, …) and is surfaced through the `keiri_core` facade as `keiri_core::<domain>` (e.g. `keiri_core::ocr`, `keiri_core::wallets`).
+  - _Target:_ consolidate this logic under `keiri_core/src/services/`, split into granular files. New cross-crate orchestration should move toward this layout.
+- **API Entry (`apps/api`):** API routes strictly delegate to the `keiri_core` facade (`keiri_core::<domain>`; target: `keiri_core::services`). No business logic in routes.
 - **Shared Packages:** Do not define types or UI locally within apps. Use `packages/types` (generated via `ts-rs`) and `packages/ui`.
 - **Dependency Management:** Common Rust dependencies belong in root `Cargo.toml` using `workspace = true`.
 

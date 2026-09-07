@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tameio Architecture Map</title>
+    <title>Keiri Architecture Map</title>
     <style>
       :root {
         --bg: #0f0f0f;
@@ -309,14 +309,14 @@
           notes: ["@journeyapps/wa-sqlite", "Mounted inside TanStack Store", "Enables offline-first UX"],
           tag: ["overview", "transactions", "all"],
         }),
-        N("pkg-ui", "client", "@tameio/ui", "Shared Shadcn components", 40, 462, 190, 44, "client", {
+        N("pkg-ui", "client", "@keiri/ui", "Shared Shadcn components", 40, 462, 190, 44, "client", {
           role: "Shared component library built with Tailwind CSS and Shadcn patterns.",
           plain: "Reusable buttons, dialogs, and form components shared across the whole app.",
           path: "packages/ui/",
           notes: ["goey-toaster for notifications", "Tailwind CSS v4", "Shadcn accessibility patterns"],
           tag: ["overview", "all"],
         }),
-        N("pkg-types", "client", "@tameio/types", "ts-rs generated types", 40, 524, 190, 44, "client", {
+        N("pkg-types", "client", "@keiri/types", "ts-rs generated types", 40, 524, 190, 44, "client", {
           role: "TypeScript types auto-generated from Rust models via ts-rs for perfect sync.",
           plain: "Type definitions shared between frontend and backend, generated automatically from Rust code.",
           path: "packages/types/",
@@ -512,10 +512,10 @@
         }),
 
         // ── SERVICES (Core Hub) ──
-        N("core", "services", "Core struct", "tameio_core hub", 820, 90, 210, 44, "service", {
+        N("core", "services", "Core struct", "keiri_core hub", 820, 90, 210, 44, "service", {
           role: "Central orchestrator holding Arc<DB>, Auth, S3, OCR, and all domain managers.",
           plain: "The brain of the system. Every request eventually flows through this central hub.",
-          path: "crates/tameio_core/src/lib.rs:76",
+          path: "crates/keiri_core/src/lib.rs:76",
           notes: [
             "line:76, struct Core",
             "line:162, Core::init()",
@@ -568,7 +568,7 @@
         N("s-ocr-core", "services", "services/ocr.rs", "process_ocr + enrich_ocr", 820, 400, 210, 44, "service", {
           role: "Orchestrates OCR result processing: idempotency check, strategy dispatch, contact auto-creation.",
           plain: "Takes the raw OCR data and turns it into a real transaction with contacts auto-linked.",
-          path: "crates/tameio_core/src/services/ocr.rs",
+          path: "crates/keiri_core/src/services/ocr.rs",
           notes: [
             "line:10, enrich_ocr()",
             "line:24, process_ocr()",
@@ -649,7 +649,7 @@
         N("s-demo", "services", "services/demo.rs", "Atomic seed + teardown", 820, 896, 210, 44, "service", {
           role: "Seeds 3 wallets, 8 categories, 3 budgets, 4 contacts, 20 transactions atomically; and clears them.",
           plain: "Creates realistic sample data so new users can try the app, and cleans it up when done.",
-          path: "crates/tameio_core/src/services/demo.rs",
+          path: "crates/keiri_core/src/services/demo.rs",
           notes: [
             "line:42, seed_demo_data()",
             "line:230, clear_demo_data()",
@@ -674,7 +674,7 @@
         N("d-db", "data", "SeaORM Pool", "PostgreSQL connection", 1100, 90, 210, 44, "db", {
           role: "Arc<DatabaseConnection> with configurable pool sizing (max 100, min 5, 3s acquire timeout).",
           plain: "The database connection pool that all services share to talk to PostgreSQL.",
-          path: "crates/tameio_core/src/lib.rs:173",
+          path: "crates/keiri_core/src/lib.rs:173",
           notes: ["max_connections: 100 (env override)", "Retry 3x on connect failure", "idle_timeout: 600s"],
           tag: ["overview", "transactions", "ocr", "p2p", "budgets", "reconciliation", "critical", "all"],
           critical: true,
@@ -1324,7 +1324,7 @@
       }
 
       function renderDefaultSidebar() {
-        let html = `<h2>Tameio Architecture Map</h2>`;
+        let html = `<h2>Keiri Architecture Map</h2>`;
         html += `<div style="color:var(--muted);margin:8px 0">Click a node to inspect it. Use chips above to filter by feature.</div>`;
 
         html += `<h3>Notable Findings From This Map</h3>`;

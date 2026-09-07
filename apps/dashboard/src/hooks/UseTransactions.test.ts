@@ -1,4 +1,5 @@
-import { toast } from "@tameio/ui/components/goey-toaster";
+// @vitest-environment jsdom
+import { toast } from "@keiri/ui/components/goey-toaster";
 import { act, renderHook } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
@@ -7,7 +8,13 @@ import { api } from "@/lib/ApiClient";
 import { useTransactionSummary, useTransactions } from "./UseTransactions";
 
 // Mock dependencies
-vi.mock("@/lib/api-client", () => ({
+vi.mock("@keiri/ui/components/goey-toaster", () => ({
+  toast: {
+    success: vi.fn(),
+    error: vi.fn(),
+  },
+}));
+vi.mock("@/lib/ApiClient", () => ({
   api: {
     get: vi.fn(),
     post: vi.fn(),
@@ -16,7 +23,7 @@ vi.mock("@/lib/api-client", () => ({
     delete: vi.fn(),
   },
 }));
-vi.mock("@/lib/auth-client", () => ({
+vi.mock("@/lib/AuthClient", () => ({
   useSession: () => ({ data: { user: { id: "test-user" } } }),
 }));
 vi.mock("@tanstack/react-query", () => ({
@@ -51,16 +58,16 @@ vi.mock("@tanstack/react-db", () => ({
   useLiveQuery: vi.fn(() => ({ data: [], isLoading: false })),
 }));
 
-// @tameio/wasm dynamically imports the .wasm binary, which jsdom can't
+// @keiri/wasm dynamically imports the .wasm binary, which jsdom can't
 // instantiate. Stub the surface the hook actually uses with always-valid
 // responses so the production code path runs end-to-end.
-vi.mock("@tameio/wasm", () => ({
+vi.mock("@keiri/wasm", () => ({
   validateTransactionWasm: vi.fn(async () => ({ is_valid: true, errors: [] })),
   aggregateTransactionsWasm: vi.fn(async () => ({})),
   generateDashboardSummaryWasm: vi.fn(async () => ({})),
   useWasmWorker: vi.fn(() => ({ worker: null, isReady: false })),
 }));
-vi.mock("@/lib/db", () => ({
+vi.mock("@/lib/Db", () => ({
   db: {
     transactions: {
       // onMutate / onError reach into db.transactions for optimistic snapshots

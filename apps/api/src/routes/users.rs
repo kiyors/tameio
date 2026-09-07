@@ -2,8 +2,8 @@ use axum::Router;
 use axum::extract::{Json, Multipart, Path, State};
 use axum::http::StatusCode;
 use axum::routing::{get, post, put};
+use keiri_core::upload::CompressOptions;
 use serde::{Deserialize, Serialize};
-use tameio_core::upload::CompressOptions;
 
 use crate::middleware::error::ApiError;
 use crate::{AppState, AuthSession};

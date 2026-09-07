@@ -39,7 +39,7 @@ if (typeof window !== 'undefined' && import.meta.hot) {
         return String(arg);
       }).join(' ');
 
-      import.meta.hot.send('tameio:browser-log', { type, message });
+      import.meta.hot.send('keiri:browser-log', { type, message });
     } catch(e) {}
   }
 
@@ -80,7 +80,7 @@ if (typeof window !== 'undefined' && import.meta.hot) {
     },
 
     configureServer(server) {
-      server.ws.on("tameio:browser-log", (data) => {
+      server.ws.on("keiri:browser-log", (data) => {
         const { type, message } = data;
 
         // Skip React Hot Reloading logs

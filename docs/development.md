@@ -1,6 +1,6 @@
-# Tameio Development Guide
+# Keiri Development Guide
 
-This document provides technical instructions for setting up the Tameio monorepo, running services locally, and following project-wide engineering standards.
+This document provides technical instructions for setting up the Keiri monorepo, running services locally, and following project-wide engineering standards.
 
 ## 1. Prerequisites
 
@@ -27,7 +27,7 @@ cargo build
 
 ### Step 2: Configuration (Secrets Management)
 
-Tameio uses [`secretspec`](https://secretspec.dev/) with `sops` as the provider and `age` for environment variable encryption. Encrypted secrets are safely committed to the repository in `secrets.yml`.
+Keiri uses [`secretspec`](https://secretspec.dev/) with `sops` as the provider and `age` for environment variable encryption. Encrypted secrets are safely committed to the repository in `secrets.yml`.
 
 1. **Prerequisites:** Ensure `sops`, `age`, and `secretspec` are installed (or simply run `nix develop` if you are using Nix, which provides them automatically).
 2. **Setup your Age Key:** Obtain the project's `age` private key and configure it (e.g., place it in `~/Library/Application Support/sops/age/keys.txt` on macOS).
@@ -45,7 +45,7 @@ Tameio uses [`secretspec`](https://secretspec.dev/) with `sops` as the provider 
    ```bash
    sops secrets.yml
    ```
-   *Note: Ensure any new required secrets are also declared in `secretspec.toml`.*
+   _Note: Ensure any new required secrets are also declared in `secretspec.toml`._
 
 ### Step 3: Database Migrations
 
@@ -74,7 +74,7 @@ pnpm dev:app
 
 ### Formatting & Linting
 
-Tameio enforces strict styling via Biome (JS/TS) and Cargo Fmt (Rust).
+Keiri enforces strict styling via Biome (JS/TS) and Cargo Fmt (Rust).
 
 ```bash
 # Format everything
@@ -88,7 +88,7 @@ pnpm check
 
 ## 4. Engineering Mandates
 
-1.  **Architecture**: All business logic must reside in `crates/tameio_core`. The `apps/api` should remain a thin routing layer.
+1.  **Architecture**: All business logic must reside in `crates/keiri_core`. The `apps/api` should remain a thin routing layer.
 2.  **Type Safety**: Never use `any` in TypeScript. Use the models generated from Rust found in `packages/types/src/db`.
 3.  **Database**: All schema changes must be performed via new files in `crates/migration`. Never modify existing migrations.
 4.  **Security**: Always use the `AuthSession` extractor in Axum handlers to ensure endpoints are authenticated and scoped to the user.

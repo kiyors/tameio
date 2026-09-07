@@ -15,8 +15,8 @@
   "menuAccent": "subtle",
   "aliases": {
     "components": "@/components",
-    "utils": "@tameio/ui/lib/utils",
-    "ui": "@tameio/ui/components",
+    "utils": "@keiri/ui/lib/utils",
+    "ui": "@keiri/ui/components",
     "lib": "@/lib",
     "hooks": "@/hooks"
   },

@@ -1,17 +1,17 @@
-import type { P2pRequestWithSender, TransactionWithDetail, TypedProcessedOcr } from "@tameio/types";
-import { Badge } from "@tameio/ui/components/badge";
-import { Button } from "@tameio/ui/components/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@tameio/ui/components/card";
+import type { P2pRequestWithSender, TransactionWithDetail, TypedProcessedOcr } from "@keiri/types";
+import { Badge } from "@keiri/ui/components/badge";
+import { Button } from "@keiri/ui/components/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@keiri/ui/components/card";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@tameio/ui/components/dropdown-menu";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { Input } from "@tameio/ui/components/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@tameio/ui/components/tabs";
+} from "@keiri/ui/components/dropdown-menu";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { Input } from "@keiri/ui/components/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@keiri/ui/components/tabs";
 import { useQueryClient } from "@tanstack/react-query";
 import { createFileRoute, useNavigate, useSearch } from "@tanstack/react-router";
 import {

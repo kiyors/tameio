@@ -1,6 +1,6 @@
-import type { CreateWalletRequest, UpdateWalletRequest, ValidationResult, Wallet } from "@tameio/types";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { validateWalletWasm } from "@tameio/wasm";
+import type { CreateWalletRequest, UpdateWalletRequest, ValidationResult, Wallet } from "@keiri/types";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { validateWalletWasm } from "@keiri/wasm";
 import { useLiveQuery } from "@tanstack/react-db";
 import { useMutation } from "@tanstack/react-query";
 

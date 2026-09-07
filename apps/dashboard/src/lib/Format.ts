@@ -5,7 +5,7 @@
  * They use `Intl.NumberFormat` with a small instance cache so repeated
  * formatting at scale doesn't allocate a fresh formatter on every call.
  *
- * The wasm-backed `formatCurrencyWasm` exported from `@tameio/wasm` is the
+ * The wasm-backed `formatCurrencyWasm` exported from `@keiri/wasm` is the
  * right choice for OCR / wasm-resident contexts where `rust_decimal`
  * precision matters; not here.
  */

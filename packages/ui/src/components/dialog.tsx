@@ -1,6 +1,6 @@
 import { Dialog as DialogPrimitive } from "@base-ui/react/dialog";
-import { Button } from "@tameio/ui/components/button";
-import { cn } from "@tameio/ui/lib/utils";
+import { Button } from "@keiri/ui/components/button";
+import { cn } from "@keiri/ui/lib/utils";
 import { XIcon } from "lucide-react";
 import type * as React from "react";
 

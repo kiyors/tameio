@@ -1,4 +1,4 @@
-import { Spinner } from "@tameio/ui/components/spinner";
+import { Spinner } from "@keiri/ui/components/spinner";
 
 import { Button, cn } from "./_adapter";
 import type { Action } from "./Schema";

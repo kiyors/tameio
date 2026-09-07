@@ -1,12 +1,12 @@
-This document serves as the canonical source of truth for the Expent project's standards, architecture, and development workflows. Adhere to these guidelines strictly when contributing to the codebase.
+This document serves as the canonical source of truth for the Keiri project's standards, architecture, and development workflows. Adhere to these guidelines strictly when contributing to the codebase.
 
 ## 🚀 Project Overview
 
-Expent is an intelligent expense management platform. It leverages OCR for receipt ingestion, automated subscription detection, and shared ledgers for group tracking.
+Keiri is an intelligent expense management platform. It leverages OCR for receipt ingestion, automated subscription detection, and shared ledgers for group tracking.
 
 ### Tech Stack
 
-- **Backend (Rust):** Axum for the API layer (`apps/api`), with all business logic centralized in the "Bank Brain" hub (`crates/expent_core`).
+- **Backend (Rust):** Axum for the API layer (`apps/api`), with all business logic centralized in the "Bank Brain" hub (`crates/keiri_core`).
 - **Frontend (Web):** TanStack Start / React Router (`apps/dashboard`) using TanStack Query, Vite, and Zustand.
 
 - **OCR Engine (Rust):** Native background worker (`crates/ocr`) using Gemini 2.5 Flash for deterministic JSON extraction.
@@ -19,9 +19,9 @@ Expent is an intelligent expense management platform. It leverages OCR for recei
 
 ### The "Central Hub" Pattern
 
-All business logic MUST reside in `crates/expent_core`.
+All business logic MUST reside in `crates/keiri_core`.
 
-- `apps/api` should be a "thin" layer that only handles HTTP routing and calls services in `expent_core`.
+- `apps/api` should be a "thin" layer that only handles HTTP routing and calls services in `keiri_core`.
 - Database entities live in `crates/db`. Pure entities should not contain business logic.
 - Shared types are generated from Rust to TypeScript via `ts-rs` in `packages/types`.
 
@@ -82,14 +82,14 @@ Before submitting any code, run the relevant verification commands:
 | :-------------- | :------------------------------------------------- |
 | **All (JS/TS)** | `pnpm fmt-all`                                     |
 | **Dashboard**   | `cd apps/dashboard && pnpm tsc && pnpm vitest run` |
-| **Rust Core**   | `cargo test -p expent_core`                        |
+| **Rust Core**   | `cargo test -p keiri_core`                         |
 | **Rust API**    | `cargo check -p api`                               |
 
 ### TDD (Test Driven Development)
 
 For the Rust backend, TDD is **mandatory**.
 
-1. Write a failing test in `expent_core` or the relevant crate.
+1. Write a failing test in `keiri_core` or the relevant crate.
 2. Implement the minimum code to make it pass.
 3. Refactor while keeping the tests green.
 

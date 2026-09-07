@@ -1,6 +1,6 @@
-import { Label } from "@tameio/ui/components/label";
-import { Separator } from "@tameio/ui/components/separator";
-import { cn } from "@tameio/ui/lib/utils";
+import { Label } from "@keiri/ui/components/label";
+import { Separator } from "@keiri/ui/components/separator";
+import { cn } from "@keiri/ui/lib/utils";
 import { cva, type VariantProps } from "class-variance-authority";
 import { useMemo } from "react";
 

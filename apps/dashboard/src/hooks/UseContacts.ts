@@ -7,9 +7,9 @@ import type {
   MergeContactsRequest,
   UpdateContactRequest,
   ValidationResult,
-} from "@tameio/types";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { validateContactWasm, validatePhoneWasm, validateUpiIdWasm } from "@tameio/wasm";
+} from "@keiri/types";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { validateContactWasm, validatePhoneWasm, validateUpiIdWasm } from "@keiri/wasm";
 import { useLiveQuery } from "@tanstack/react-db";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 

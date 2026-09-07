@@ -1,5 +1,5 @@
 // biome-ignore-all lint/a11y/noSvgWithoutTitle: decorative brand icons; parent buttons carry the accessible label
-import { Button } from "@tameio/ui/components/button";
+import { Button } from "@keiri/ui/components/button";
 import type React from "react";
 
 export const GoogleIcon = (props: React.ComponentProps<"svg">) => (

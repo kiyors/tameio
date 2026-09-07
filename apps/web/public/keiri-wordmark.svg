@@ -1,9 +1,9 @@
 <svg viewBox="0 0 500 100" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
-  <title id="title">Tameio</title>
-  <desc id="desc">Tameio wordmark led by the closed balance mark.</desc>
+  <title id="title">Keiri</title>
+  <desc id="desc">Keiri wordmark led by the closed balance mark.</desc>
   <g transform="translate(2 2) scale(.96)" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
     <path d="M32 27a31 31 0 1 0 36 0" stroke-linecap="butt"/>
     <path d="M25 28h50M50 29v38"/>
   </g>
-  <text x="113" y="74" fill="currentColor" font-family="Geist, Inter, ui-sans-serif, system-ui, sans-serif" font-size="68" font-weight="540" letter-spacing="-4.2">tameio</text>
+  <text x="113" y="74" fill="currentColor" font-family="Geist, Inter, ui-sans-serif, system-ui, sans-serif" font-size="68" font-weight="540" letter-spacing="-4.2">keiri</text>
 </svg>

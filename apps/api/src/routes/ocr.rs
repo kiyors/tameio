@@ -8,9 +8,9 @@ use db::dto::{
     ResolveContactRequest,
 };
 use futures::stream::Stream;
+use keiri_core::ocr;
 use std::convert::Infallible;
 use std::sync::Arc;
-use tameio_core::ocr;
 
 use crate::middleware::error::ApiError;
 use crate::{AppState, AuthSession};

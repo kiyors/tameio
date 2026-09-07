@@ -6,7 +6,7 @@ use db::dto::{
     CreateManualTransactionRequest, PaginationParams, SplitTransactionRequest,
     UpdateTransactionRequest,
 };
-use tameio_core::ocr::OcrProcessor;
+use keiri_core::ocr::OcrProcessor;
 
 use crate::middleware::error::ApiError;
 use crate::{AppState, AuthSession};
@@ -78,8 +78,8 @@ pub async fn get_summary_handler(
 pub async fn create_from_ocr_handler(
     State(state): State<AppState>,
     session: AuthSession,
-    Json(payload): Json<tameio_core::ProcessedOcr>,
-) -> Result<Json<tameio_core::OcrTransactionResponse>, ApiError> {
+    Json(payload): Json<keiri_core::ProcessedOcr>,
+) -> Result<Json<keiri_core::OcrTransactionResponse>, ApiError> {
     let result = state
         .core
         .process_ocr(&state.core.db, &session.user.id, payload)

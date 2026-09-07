@@ -1,17 +1,17 @@
-# Tameio Authentication & Authorization (`crates/auth`)
+# Keiri Authentication & Authorization (`crates/auth`)
 
-This document outlines the architecture, data-flow boundaries, and implementation patterns governing user authentication in the Tameio ecosystem.
+This document outlines the architecture, data-flow boundaries, and implementation patterns governing user authentication in the Keiri ecosystem.
 
-The system natively wraps the [Better Auth](https://github.com/better-auth/better-auth) standard within a strict Rust integration (`crates/auth`), coupling it tightly to the `axum` routing framework via the **`tameio_core`** hub.
+The system natively wraps the [Better Auth](https://github.com/better-auth/better-auth) standard within a strict Rust integration (`crates/auth`), coupling it tightly to the `axum` routing framework via the **`keiri_core`** hub.
 
 ## Architectural Overview
 
-- **Logic Path**: `crates/auth` -> **`crates/tameio_core`** -> **`apps/api`** -> `apps/dashboard`.
+- **Logic Path**: `crates/auth` -> **`crates/keiri_core`** -> **`apps/api`** -> `apps/dashboard`.
 - **Core Library**: `better_auth` (Rust Crate).
 - **Plugins Injected**: `EmailPasswordPlugin`, `SessionManagementPlugin`.
 - **Database Adapter**: A purely custom `PostgresAdapter` mapping standard `better_auth` entity traits explicitly to the `sea_orm` models (found in `crates/auth/src/adapter/`).
-- **Centralized Orchestration**: The authentication system is initialized and managed by the **`tameio_core::Core`** struct, which acts as the unified hub for all backend services.
-- **Axum Guards**: Exposes the seamless `AuthSession` extractor trait (re-exported by `tameio_core`) globally for injecting securely logged-in `User` data into API handlers.
+- **Centralized Orchestration**: The authentication system is initialized and managed by the **`keiri_core::Core`** struct, which acts as the unified hub for all backend services.
+- **Axum Guards**: Exposes the seamless `AuthSession` extractor trait (re-exported by `keiri_core`) globally for injecting securely logged-in `User` data into API handlers.
 
 ---
 
@@ -48,7 +48,7 @@ All guarded routes in **`apps/api`** (e.g., fetching transactions, uploading rec
 
 ## 3. Configuration & Initialization
 
-Bootstrapped within `init_auth()` and integrated into the **`tameio_core::Core::init()`** flow called by **`apps/api/src/main.rs`**.
+Bootstrapped within `init_auth()` and integrated into the **`keiri_core::Core::init()`** flow called by **`apps/api/src/main.rs`**.
 
 ### Environment Controls
 

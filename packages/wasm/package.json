@@ -1,5 +1,5 @@
 {
-  "name": "@tameio/wasm",
+  "name": "@keiri/wasm",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
@@ -10,7 +10,7 @@
     "cleanup": "rm -rf node_modules .turbo pkg"
   },
   "dependencies": {
-    "@tameio/types": "workspace:*"
+    "@keiri/types": "workspace:*"
   },
   "peerDependencies": {
     "react": "catalog:"

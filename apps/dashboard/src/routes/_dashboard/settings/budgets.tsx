@@ -1,8 +1,8 @@
-import { Button } from "@tameio/ui/components/button";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { Progress, ProgressIndicator, ProgressTrack } from "@tameio/ui/components/Progress";
-import { Separator } from "@tameio/ui/components/separator";
-import { cn } from "@tameio/ui/lib/utils";
+import { Button } from "@keiri/ui/components/button";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { Progress, ProgressIndicator, ProgressTrack } from "@keiri/ui/components/Progress";
+import { Separator } from "@keiri/ui/components/separator";
+import { cn } from "@keiri/ui/lib/utils";
 import { createFileRoute } from "@tanstack/react-router";
 import { PlusIcon, TargetIcon, Trash2Icon } from "lucide-react";
 import * as React from "react";

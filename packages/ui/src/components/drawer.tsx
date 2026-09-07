@@ -1,4 +1,4 @@
-import { cn } from "@tameio/ui/lib/utils";
+import { cn } from "@keiri/ui/lib/utils";
 import type * as React from "react";
 import { Drawer as DrawerPrimitive } from "vaul";
 

@@ -1,8 +1,8 @@
-# Tameio OCR & Extraction Worker (`crates/ocr`)
+# Keiri OCR & Extraction Worker (`crates/ocr`)
 
-This document covers the structure and logic of the internal OCR background worker. It operates strictly as an asynchronous data-processing pipeline consumed by the **`tameio_core`** hub.
+This document covers the structure and logic of the internal OCR background worker. It operates strictly as an asynchronous data-processing pipeline consumed by the **`keiri_core`** hub.
 
-> **Naming note:** `tameio_core::services::*` paths below describe the **target** layout. The working path today is `tameio_core::ocr` (the facade re-exporting the `ocr` crate's `ops`/`worker`). See `docs/core.md` for the convention.
+> **Naming note:** `keiri_core::services::*` paths below describe the **target** layout. The working path today is `keiri_core::ocr` (the facade re-exporting the `ocr` crate's `ops`/`worker`). See `docs/core.md` for the convention.
 
 ## Architectural Overview
 
@@ -10,7 +10,7 @@ This document covers the structure and logic of the internal OCR background work
 - **Worker Engine**: Background workers powered by `tokio::spawn` and `tokio_util::task::TaskTracker`.
 - **Communication**: Uses PostgreSQL `LISTEN/NOTIFY` channels (`ocr_jobs_channel`) for near real-time job execution.
 - **Resilience**: Features graceful shutdowns via `CancellationToken` and stale job recovery for tasks interrupted by restarts.
-- **Orchestration**: Managed by **`tameio_core::services::ocr`**, which handles background job status, data mapping, and database persistence.
+- **Orchestration**: Managed by **`keiri_core::services::ocr`**, which handles background job status, data mapping, and database persistence.
 
 ---
 

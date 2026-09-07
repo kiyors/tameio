@@ -1,4 +1,4 @@
-import { SidebarInset, SidebarProvider } from "@tameio/ui/components/sidebar";
+import { SidebarInset, SidebarProvider } from "@keiri/ui/components/sidebar";
 
 import { AppNavbar } from "@/components/layout/AppNavbar";
 import { AppSidebar } from "@/components/layout/AppSidebar";

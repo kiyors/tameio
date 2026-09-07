@@ -1,5 +1,5 @@
 {
-  "name": "@tameio/types",
+  "name": "@keiri/types",
   "version": "0.1.0",
   "private": true,
   "main": "src/index.ts",

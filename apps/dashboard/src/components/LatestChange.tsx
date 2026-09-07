@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-has-content, jsx-a11y/control-has-associated-label */
-import { Button } from "@tameio/ui/components/button";
-import { cn } from "@tameio/ui/lib/utils";
+import { Button } from "@keiri/ui/components/button";
+import { cn } from "@keiri/ui/lib/utils";
 import { XIcon } from "lucide-react";
 import { useState } from "react";
 

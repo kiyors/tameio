@@ -1,7 +1,7 @@
 import { Combobox as ComboboxPrimitive } from "@base-ui/react";
-import { Button } from "@tameio/ui/components/button";
-import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@tameio/ui/components/input-group";
-import { cn } from "@tameio/ui/lib/utils";
+import { Button } from "@keiri/ui/components/button";
+import { InputGroup, InputGroupAddon, InputGroupButton, InputGroupInput } from "@keiri/ui/components/input-group";
+import { cn } from "@keiri/ui/lib/utils";
 import { CheckIcon, ChevronDownIcon, XIcon } from "lucide-react";
 import * as React from "react";
 

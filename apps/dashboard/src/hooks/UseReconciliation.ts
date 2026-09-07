@@ -1,4 +1,4 @@
-import type { BankStatementRow, Transaction } from "@tameio/types";
+import type { BankStatementRow, Transaction } from "@keiri/types";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 import { api } from "@/lib/ApiClient";

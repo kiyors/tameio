@@ -5,7 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@tameio/ui/components/dropdown-menu";
+} from "@keiri/ui/components/dropdown-menu";
 import {
   SidebarGroup,
   SidebarGroupLabel,
@@ -14,7 +14,7 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
-} from "@tameio/ui/components/sidebar";
+} from "@keiri/ui/components/sidebar";
 import { FolderIcon, MoreHorizontalIcon, ShareIcon, Trash2Icon } from "lucide-react";
 
 export function NavProjects({

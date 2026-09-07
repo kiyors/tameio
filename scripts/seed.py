@@ -8,7 +8,7 @@ import os
 from datetime import datetime, timezone, timedelta
 
 # Configuration
-DB_PATH = "tameio.db"
+DB_PATH = "keiri.db"
 AUTH_API_URL = "http://localhost:7878/api/auth/sign-up/email"
 HEALTH_CHECK_URL = "http://localhost:7878/api/health"
 USER_EMAIL = "gaurav61355@gmail.com"
@@ -17,7 +17,7 @@ USER_NAME = "Gaurav"
 
 
 def seed_db():
-    print("🚀 Starting Tameio Backend for seeding...")
+    print("🚀 Starting Keiri Backend for seeding...")
     # Note: We use shell=True to handle environmental variables via the shell if needed,
     # and we capture stdout/stderr to help with debugging if it fails.
     server_process = subprocess.Popen(
@@ -227,7 +227,7 @@ def seed_db():
                 # Insert metadata record
                 c.execute(
                     "INSERT INTO transaction_metadata (transaction_id, app_name) VALUES (?, ?)",
-                    (tx[0], "Tameio Seeder"),
+                    (tx[0], "Keiri Seeder"),
                 )
                 inserted_count += 1
             except sqlite3.IntegrityError:

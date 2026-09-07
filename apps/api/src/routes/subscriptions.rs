@@ -58,7 +58,7 @@ pub async fn confirm_subscription_handler(
     let result = state
         .core
         .subscriptions
-        .confirm(tameio_core::subscriptions::ops::ConfirmSubscriptionParams {
+        .confirm(keiri_core::subscriptions::ops::ConfirmSubscriptionParams {
             user_id: session.user.id.clone(),
             name: payload.name,
             amount: payload.amount,

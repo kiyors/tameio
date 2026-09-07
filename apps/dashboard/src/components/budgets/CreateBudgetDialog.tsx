@@ -1,5 +1,5 @@
-import type { BudgetPeriod } from "@tameio/types";
-import { Button } from "@tameio/ui/components/button";
+import type { BudgetPeriod } from "@keiri/types";
+import { Button } from "@keiri/ui/components/button";
 import {
   Dialog,
   DialogContent,
@@ -7,11 +7,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@tameio/ui/components/dialog";
-import { toast } from "@tameio/ui/components/goey-toaster";
-import { Input } from "@tameio/ui/components/input";
-import { Label } from "@tameio/ui/components/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@tameio/ui/components/select";
+} from "@keiri/ui/components/dialog";
+import { toast } from "@keiri/ui/components/goey-toaster";
+import { Input } from "@keiri/ui/components/input";
+import { Label } from "@keiri/ui/components/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@keiri/ui/components/select";
 import * as React from "react";
 
 import { useBudgets } from "@/hooks/UseBudgets";

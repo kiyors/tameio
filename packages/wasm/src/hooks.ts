@@ -1,4 +1,4 @@
-import type { SearchableItem } from "@tameio/types";
+import type { SearchableItem } from "@keiri/types";
 import { useEffect, useState } from "react";
 
 import { advancedFuzzySearchWasm } from "./utils";

@@ -1,6 +1,6 @@
-# Tameio Dashboard Architecture & UI Documentation
+# Keiri Dashboard Architecture & UI Documentation
 
-This document covers the architectural layout, frontend stack, routing structure, and component methodology established for the Tameio web dashboard.
+This document covers the architectural layout, frontend stack, routing structure, and component methodology established for the Keiri web dashboard.
 
 ## Architectural Overview
 
@@ -14,7 +14,7 @@ The dashboard is built within the `apps/dashboard` monorepo package. It leverage
   - Client Global App State: `zustand`
 - **Styling**: Tailwind CSS v4 & `next-themes`.
 - **Assets**: Static SVG references using `mask-image` for rich CSS-based theme coloring with minimal JS bundle footprint.
-- **Dependencies**: Imports strongly from shared workspace packages (`@tameio/ui` for UI and `@tameio/types` for TypeScript bounds).
+- **Dependencies**: Imports strongly from shared workspace packages (`@keiri/ui` for UI and `@keiri/types` for TypeScript bounds).
 - **Authentication**: Directly wired into `better-auth` using native React bindings.
 
 ---
@@ -72,11 +72,11 @@ The secure boundary wrapped in a global `route.tsx`, forcing authentication chec
 
 ## Data Fetching & Architecture Patterns
 
-Tameio frontend strictly follows explicit standardization to bridge reliably to the Rust **`apps/api`**:
+Keiri frontend strictly follows explicit standardization to bridge reliably to the Rust **`apps/api`**:
 
 1. **Routing Middleware (`beforeLoad`)**: Intercepts requests to check for `better-auth` sessions and redirects to `/sign-in` if missing.
 2. **API Routing**: Pages fetch from `VITE_API_URL` (defaults to `http://localhost:7878`) with `credentials: "include"`.
 3. **Aggressive Optimistic Updating (React Query)**: Uses `useMutation` with cache invalidation for a hyper-responsive UI.
 4. **Form Standardization**: Leveraging `useEntityForm` to build highly reliable, memory-safe dialog modals.
-5. **Toast Notifications**: Consistent feedback via the `@tameio/ui` `goey-toaster` component.
-6. **Type Safety**: The dashboard uses types generated from the Rust backend via `ts-rs`, ensuring that models re-exported by **`tameio_core`** are perfectly synced with the frontend.
+5. **Toast Notifications**: Consistent feedback via the `@keiri/ui` `goey-toaster` component.
+6. **Type Safety**: The dashboard uses types generated from the Rust backend via `ts-rs`, ensuring that models re-exported by **`keiri_core`** are perfectly synced with the frontend.
